@@ -3,46 +3,41 @@ import { BrowserRouter } from "react-router-dom";
 import { mount } from "@cypress/react18";
 import InputDetail from "./input-detail";
 
-describe("InputDetail", () => {
-  it("should allow the input field to be modified", () => {
-    const placeholder = "Aslaug";
-    const name = "name";
-    const value = "some value";
-    const readOnly = false;
-    const newValue = "42";
+describe('InputDetail', () => {
+  const placeholder = 'Aslaug'
+  const name = 'name'
+  const value = 'some value'
+  const newValue = '42'
+
+  it('should allow the input field to be modified', () => {
     cy.mount(
       <InputDetail
         name={name}
         value={value}
         placeholder={placeholder}
-        onChange={cy.stub().as("onChange")}
-        readOnly={readOnly}
-      />
-    );
+        onChange={cy.stub().as('onChange')}
+      />,
+    )
 
-    cy.contains("label", name);
+    cy.contains('label', name)
     cy.findByPlaceholderText(placeholder).clear().type(newValue)
-    cy.findByDisplayValue(newValue)
-    cy.get("@onChange")
-      .its("callCount")
-      .should("eq", newValue.length + 1)
-  });
+    cy.findByDisplayValue(newValue).should('be.visible')
+    cy.get('@onChange').its('callCount').should('eq', newValue.length)
+  })
 
-  it("should not allow the input field to be modified when readonly", () => {
-    const placeholder = "Aslaug";
-    const name = "name";
-    const value = "some value";
-    const readOnly = true;
+  it('should not allow the input field to be modified', () => {
     cy.mount(
       <InputDetail
         name={name}
         value={value}
         placeholder={placeholder}
-        readOnly={readOnly}
-      />
-    );
+        readOnly={true}
+      />,
+    )
 
-    cy.contains(name);
-    cy.findByPlaceholderText(placeholder).should("have.attr", "readOnly");
-  });
-});
+    cy.contains('label', name)
+    cy.findByPlaceholderText(placeholder)
+      .should('have.value', value)
+      .and('have.attr', 'readOnly')
+  })
+})

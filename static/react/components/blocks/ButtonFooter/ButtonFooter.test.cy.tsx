@@ -3,44 +3,38 @@ import { mount } from "@cypress/react18";
 import ButtonFooter from "./button-footer";
 import { FaEdit, FaRegSave } from "react-icons/fa";
 
-describe("ButtonFooter", () => {
-  const doAssertions = (label: "Cancel" | "Save" | "Edit" | "Delete") => {
-    cy.contains(label);
-    cy.get(".btn").click();
+describe('ButtonFooter', () => {
+  const doAssertions = (label: string) => {
+    cy.contains('span', label)
+    cy.get('svg').should('be.visible')
 
-    cy.get("@click").should("be.called");
-    cy.get("svg").should("be.visible");
-  };
+    cy.getByCy(`${label.toLowerCase()}-button`).click()
+    cy.get('@click').should('be.called')
+  }
 
-  it("should render a button with the label Edit and trigger a onClick", () => {
-    // Arrange
-    const label = "Edit";
-    const classBtn = "btn-primary btn-lg"
-    mount(
+  it('should render and Edit button, the label, and trigger an onClick', () => {
+    const label = 'Edit'
+    cy.mount(
       <ButtonFooter
         label={label}
-        classBtn={classBtn}
         IconClass={FaEdit}
-        onClick={cy.stub().as("click")}
+        onClick={cy.stub().as('click')}
       />
-    );
+    )
 
     doAssertions(label)
-  });
+  })
 
-  it("should render a button with the label Save and trigger a onClick", () => {
-    // Arrange
-    const label = "Save";
-    const classBtn = "btn-warning btn-lg"
-    mount(
+  it('should render and Save button, the label, and trigger an onClick', () => {
+    const label = 'Save'
+    cy.mount(
       <ButtonFooter
         label={label}
-        classBtn={classBtn}
         IconClass={FaRegSave}
-        onClick={cy.stub().as("click")}
-      />
-    );
+        onClick={cy.stub().as('click')}
+      />,
+    )
 
     doAssertions(label)
-  });
-});
+  })
+})

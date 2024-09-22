@@ -1,21 +1,16 @@
 import React, { FC } from "react"
 
-interface ICardContentProps {
+type CardContentProps = {
     name: string
     description: string
-}
-
-const CardContent: FC<ICardContentProps> = (props: ICardContentProps) => {
-
-    const { name, description} = props
-
+  }
+  
+  export default function CardContent({name, description}: CardContentProps) {
     return (
-
-        <div className="card-content">
-            <div className="name">{name}</div>
-            <div className="description">{description}</div>
-        </div>
+      <div data-cy="card-content" className="card-content">
+        <div className="name">{name}</div>
+        <div className="description">{description}</div>
+      </div>
     )
-}
-
-export default CardContent
+  }
+  

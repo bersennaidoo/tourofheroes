@@ -13,9 +13,10 @@ import type { Boy } from "../../static/react/data/Boy";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ErrorBoundary } from "react-error-boundary";
-import ErrorComp from "../../static/react/components/ErrorComp";
-import PageSpinner from "../../static/react/components/PageSpinner";
+import ErrorComp from "../../static/react/components/blocks/ErrorComp/error-comp";
+import PageSpinner from "../../static/react/components/blocks/PageSpinner/page-spinner";
 import { Suspense } from "react";
+//import "../../static/css/bootstrap-custom.css"
 import "../../node_modules/bootstrap/scss/bootstrap.scss";
 import "../../assets/scss/_custom-styles.scss";
 

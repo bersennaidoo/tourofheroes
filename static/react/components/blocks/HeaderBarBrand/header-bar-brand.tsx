@@ -4,30 +4,25 @@ import { NavLink } from "react-router-dom";
 
 interface IHeaderBarBrandProps {}
 
-const HeaderBarBrand: FC<IHeaderBarBrandProps> = (
-  props: IHeaderBarBrandProps
-) => {
-  const {} = props;
-
+export default function HeaderBarBrand() {
   return (
     <div data-cy="header-bar-brand" className="navbar-brand">
       <a
         href="https://reactjs.org/"
         target="_blank"
         rel="noopener noreferrer"
-        className="nav-link"
+        className="navbar-item"
+        data-cy="header-bar-brand-link"
       >
         <div data-cy="react-icon-svg">
           <FaReact />
         </div>
       </a>
-      <NavLink data-cy="navLink" to="/shop" className="nav-link">
-        <span className="tours">TOUR</span>
+      <NavLink data-cy="navLink" to="/" className="navbar-item navbar-home">
+        <span className="tour">TOUR</span>
         <span className="of">OF</span>
         <span className="heroes">HEROES</span>
       </NavLink>
     </div>
-  );
-};
-
-export default HeaderBarBrand;
+  )
+}

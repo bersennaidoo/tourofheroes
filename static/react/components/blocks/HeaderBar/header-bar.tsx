@@ -1,22 +1,16 @@
 import React, { FC } from "react";
 import HeaderBarBrand from "../../blocks/HeaderBarBrand/header-bar-brand";
 
-interface IHeaderBarProps {}
-
-const HeaderBar: FC<IHeaderBarProps> = (props: IHeaderBarProps) => {
-  const {} = props;
-
+export default function HeaderBar() {
   return (
     <header data-cy="header-bar">
       <nav
-        className="navbar navbar-expand-lg navbar-dark bg-dark"
+        className="navbar has-background-dark is-dark"
         role="navigation"
         aria-label="main navigation"
       >
         <HeaderBarBrand />
       </nav>
     </header>
-  );
-};
-
-export default HeaderBar;
+  )
+}

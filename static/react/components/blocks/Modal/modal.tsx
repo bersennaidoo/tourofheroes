@@ -1,36 +1,32 @@
-import React, { FC, useEffect, useRef, ReactNode } from "react"
-import { createPortal } from "react-dom"
+import type {ReactNode} from 'react'
+import React, {useEffect, useRef} from 'react'
+import {createPortal} from 'react-dom'
 
-interface IModalProps {
-    children?: ReactNode
+type ModalProps = {
+  children?: ReactNode
 }
 
+const Modal = ({children}: ModalProps) => {
+  const el = useRef(document.createElement('div'))
 
-const Modal: FC<IModalProps> = (props: IModalProps) => {
+  let modalRoot = document.getElementById('modal-root')
+  if (!modalRoot) {
+    modalRoot = document.createElement('div')
+    modalRoot.setAttribute('id', 'modal-root')
+    document.body.appendChild(modalRoot)
+  }
 
-    const { children } = props
+  useEffect(() => {
+    const currentEl = el.current
 
-    const el = useRef(document.createElement("div"))
+    modalRoot!.appendChild(currentEl)
 
-    let modalRoot = document.getElementById("modal-root")
-    if (!modalRoot) {
-        modalRoot = document.createElement("div")
-        modalRoot.setAttribute("id", "modal-root")
-        document.body.appendChild(modalRoot)
+    return () => {
+      modalRoot!.removeChild(currentEl)
     }
+  }, [modalRoot])
 
-    useEffect(() => {
-        const currentEl = el.current
-        modalRoot?.appendChild(currentEl)
-
-        return () => {
-            modalRoot!.removeChild(currentEl)
-        }
-    }, [modalRoot])
-
-    return (
-        createPortal(children, el.current)
-    )
+  return createPortal(children, el.current)
 }
 
 export default Modal
