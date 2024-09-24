@@ -18,7 +18,7 @@ export default function HeaderBarBrand() {
           <FaReact />
         </div>
       </a>
-      <NavLink data-cy="navLink" to="/" className="navbar-item navbar-home">
+      <NavLink data-cy="navLink" to="/tourofheroes" className="navbar-item navbar-home">
         <span className="tour">TOUR</span>
         <span className="of">OF</span>
         <span className="heroes">HEROES</span>

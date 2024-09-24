@@ -18,7 +18,7 @@ import PageSpinner from "../../static/react/components/blocks/PageSpinner/page-s
 import { Suspense } from "react";
 //import "../../static/css/bootstrap-custom.css"
 import "../../node_modules/bootstrap/scss/bootstrap.scss";
-import "../../assets/scss/_custom-styles.scss";
+import "../../static/css/bulma-custom.css";
 
 declare global {
   namespace Cypress {

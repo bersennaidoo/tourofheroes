@@ -10344,6 +10344,23 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important; } }
 
+/*! bulma.io v1.0.2 | MIT License | github.com/jgthms/bulma */
+@use "sass";
+.menu-list .active-link,
+.menu-list .router-link-active {
+  color: #fff;
+  background-color: #00b3e6; }
+
+.not-found i {
+  font-size: 20px;
+  margin-right: 8px; }
+
+.not-found .title {
+  letter-spacing: 0px;
+  font-weight: normal;
+  font-size: 24px;
+  text-transform: none; }
+
 header {
   font-weight: bold;
   font-family: Arial; }
@@ -10355,10 +10372,10 @@ header {
       color: #ccc; }
     header span.heroes {
       color: #61dafb; }
-  header .nav-link {
+  header .navbar-item.nav-home {
     border: 3px solid transparent;
     border-radius: 0%; }
-    header .nav-link:hover {
+    header .navbar-item.nav-home:hover {
       border-right: 3px solid #61dafb;
       border-left: 3px solid #61dafb; }
   header .fab {
@@ -10372,26 +10389,8 @@ header {
     header .buttons i.fab:hover {
       color: #61dafb; }
 
-div[data-cy="header-bar-brand"] {
-  display: flex;
-  justify-content: space-evenly; }
-
-div.card-content {
-  background-color: #fafafa;
-  padding-inline: 2rem;
-  padding-block: 2rem; }
-  div.card-content .name {
-    font-size: 28px;
-    color: #000; }
-  div.card-content .description {
-    font-size: 20px;
-    color: #999; }
-
-label.label {
-  font-weight: normal; }
-
-.field {
-  margin-bottom: 0.75rem; }
+.edit-detail .input[readonly] {
+  background-color: #fafafa; }
 
 .content-title-group {
   margin-bottom: 16px; }
@@ -10411,3 +10410,79 @@ label.label {
     color: #999; }
     .content-title-group button.button:hover {
       color: #00b3e6; }
+
+ul.list {
+  box-shadow: none; }
+
+div.card-content {
+  background-color: #fafafa;
+  background-color: #fafafa; }
+  div.card-content .name {
+    font-size: 28px;
+    color: #000; }
+  div.card-content .description {
+    font-size: 20px;
+    color: #999; }
+
+.card {
+  margin-bottom: 2em; }
+
+label.label {
+  font-weight: normal; }
+
+p.card-header-title {
+  background-color: #00b3e6;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #fff;
+  display: block;
+  padding-left: 24px; }
+
+.card-footer button {
+  font-size: 16px;
+  color: #888; }
+  .card-footer button i {
+    margin-right: 10px; }
+  .card-footer button:hover {
+    color: #00b3e6; }
+
+.modal-card-foot button {
+  display: inline-block;
+  width: 80px; }
+
+.modal-card-head,
+.modal-card-body {
+  text-align: center; }
+
+.field {
+  margin-bottom: 0.75rem; }
+
+.navbar-burger {
+  margin-left: auto; }
+
+button.link {
+  background: none;
+  border: none;
+  cursor: pointer; }
+
+.page-loading {
+  font-size: 300%;
+  position: fixed;
+  z-index: 999;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px; }
+
+.icon-loading {
+  animation: circle 1.2s steps(8) infinite; }
+
+@keyframes circle {
+  from {
+    transform: rotate(90deg); }
+  to {
+    transform: rotate(450deg); } }

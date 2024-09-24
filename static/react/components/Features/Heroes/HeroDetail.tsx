@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, ChangeEvent } from "react";
 import { Hero } from "../../../models/Hero/Hero";
 import InputDetail from "../../blocks/InputDetail/input-detail";
 import ButtonFooter from "../../blocks/ButtonFooter/button-footer";

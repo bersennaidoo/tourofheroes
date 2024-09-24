@@ -1,8 +1,10 @@
 import React, { FC, useState, useEffect } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import ListHeader from "../../blocks/ListHeader/list-header";
 import heroes from "../../../../../cypress/fixtures/heroes.json";
 import HeroList from "./HeroList";
 import ModalYesNo from "../../blocks/ModalYesNo/modal-yes-no";
+import HeroDetail from "./HeroDetail";
 
 interface IHeroesProps {
 }
@@ -11,13 +13,14 @@ const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
   const {} = props;
 
   const [showModal, setShowModal] = useState<boolean>(false);
-
-  const addNewHero = () => {
-    console.log("handleAdd");
-  };
+  const navigate = useNavigate()
 
   const handleRefresh = () => {
-    console.log("handleRefresh");
+    navigate("/tourofheroes/heroes")
+  }
+
+  const addNewHero = () => {
+    navigate("/tourofheroes/heroes/add-hero")
   };
 
   const handleCloseModal = () => {
@@ -42,7 +45,14 @@ const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
       />
       <div>
         <div>
-          <HeroList heroes={heroes} handleDeleteHero={handleDeleteHero} />
+          <Routes>
+            <Route 
+               path=""
+               element={<HeroList heroes={heroes} handleDeleteHero={handleDeleteHero} />}
+            />
+            <Route path="/add-hero" element={<HeroDetail hero={heroes[0]} />} />
+            <Route path="*" element={<HeroList heroes={heroes} handleDeleteHero={handleDeleteHero} />} />
+          </Routes>
         </div>
       </div>
       {showModal && (

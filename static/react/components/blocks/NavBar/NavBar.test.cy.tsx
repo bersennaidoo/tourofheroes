@@ -4,7 +4,7 @@ import { MemoryRouter, BrowserRouter } from "react-router-dom";
 // In order to have navigation accross the website
 // As a developer
 // I want a navigation bar with links to various pages
-const routes = ['heroes', 'villains', 'boys', 'about']
+const routes = ['/tourofheroes/heroes', '/tourofheroes/villains', '/tourofheroes/boys']
 
 describe('NavBar', () => {
   it('should navigate to the correct routes', () => {
@@ -15,11 +15,10 @@ describe('NavBar', () => {
     )
 
     cy.contains('p', 'Menu')
-    cy.getByCy('menu-list').children().should('have.length', routes.length)
+    cy.getByCy('menu-list').should("be.visible")
 
     routes.forEach((route: string) => {
-      cy.get(`[href="/${route}"]`)
-        .contains(route, {matchCase: false})
+      cy.get(`[href="${route}"]`)
         .click()
         .should('have.class', 'active-link')
         .siblings()

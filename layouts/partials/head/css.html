@@ -12,7 +12,7 @@
   {{- end }}
 {{- end }}
 
-{{- with resources.Get "scss/bootstrap-custom.scss" | toCSS }}
+{{/*{{- with resources.Get "scss/bootstrap-custom.scss" | toCSS }}
   {{- if eq hugo.Environment "development" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{- else }}
@@ -20,7 +20,7 @@
       <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
     {{- end }}
   {{- end }}
-{{- end }}
+{{- end }}*/}}
 
 {{- with resources.Get "css/hover.css/scss/hover.scss" | toCSS }}
   {{- if eq hugo.Environment "development" }}
@@ -71,6 +71,8 @@
     {{- end }}
   {{- end }}
 {{- end }}
+
+<link rel="stylesheet" href="/css/bulma-custom.css" >
 
 
 

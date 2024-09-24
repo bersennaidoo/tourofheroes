@@ -1,3 +1,37 @@
 {{ define "main" }}
-{{ .Content }}
+<div
+  data-cy="about"
+  class="content-container"
+  style="margin: 16px 16px; padding: 16px 16px;"
+>
+  <div class="content-title-group not-found">
+    <a href="/tourofheroes">
+      <h2 class="title">Tours Of Heroes</h2>
+    </a>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis possimus
+      cupiditate, molestiae eos asperiores quis placeat laborum quo mollitia
+      magni delectus unde ipsum nostrum repellat maxime non quos. Iusto, beatae.
+    </p>
+    <br />
+    <h2 class="title">Live applications by John Papa</h2>
+    <ul>
+      <li>
+        <a href="https://papa-heroes-angular.azurewebisties.net">
+          Tour of Heroes with Angular
+        </a>
+      </li>
+      <li>
+        <a href="https://papa-heroes-react.azurewebisties.net">
+          Tour of Heroes with React
+        </a>
+      </li>
+      <li>
+        <a href="https://papa-heroes-vue.azurewebisties.net">
+          Tour of Heroes with Vue
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
 {{ end }}

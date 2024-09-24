@@ -9,17 +9,14 @@ export default function NavBar() {
     <nav data-cy="nav-bar" className="column is-2 menu">
       <p className="menu-label">Menu</p>
       <ul data-cy="menu-list" className="menu-list">
-        <NavLink to="/heroes" className={linkIsActive}>
+        <NavLink to="/tourofheroes/heroes" className={linkIsActive}>
           Heroes
         </NavLink>
-        <NavLink to="/villains" className={linkIsActive}>
+        <NavLink to="/tourofheroes/villains" className={linkIsActive}>
           Villains
         </NavLink>
-        <NavLink to="/boys" className={linkIsActive}>
+        <NavLink to="/tourofheroes/boys" className={linkIsActive}>
           Boys
-        </NavLink>
-        <NavLink to="/about" className={linkIsActive}>
-          About
         </NavLink>
       </ul>
     </nav>

@@ -3,24 +3,6 @@ import { BrowserRouter } from "react-router-dom"
 
 describe("Heroes", () => {
 
-    it("should handle hero add and refresh", () => {
-        cy.window()
-          .its("console")
-          .then((console) => cy.spy(console, "log").as("log"))
-
-        cy.mount(
-          <BrowserRouter>
-            <Heroes />
-          </BrowserRouter>
-        )
-
-        cy.getByCy("list-header")
-        cy.getByCy("add-button").click()
-        cy.get("@log").should("have.been.calledWith", "handleAdd")
-        cy.getByCy("refresh-button").click()
-        cy.get("@log").should("have.been.calledWith", "handleRefresh")
-    })
-
     it("should display hero list on render", () => {
 
         cy.mount(
@@ -29,7 +11,16 @@ describe("Heroes", () => {
             </BrowserRouter>
         )
 
-        cy.getByCy("hero-list")
+        cy.getByCy("hero-list").should("be.visible")
+
+        cy.getByCy("add-button").click()
+        cy.location("pathname").should("eq", "/tourofheroes/heroes/add-hero")
+
+        cy.getByCy("refresh-button").click()
+        cy.location("pathname").should("eq", "/tourofheroes/heroes")
+
+        cy.getByCy("add-button").click()
+        cy.location("pathname").should("eq", "/tourofheroes/heroes/add-hero")
     })
 
     const invokeHeroDelete = () => {

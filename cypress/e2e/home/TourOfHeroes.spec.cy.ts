@@ -3,30 +3,32 @@
 
 describe("Heroes", () => {
 
+    beforeEach(() =>  
+        cy.visit("http://localhost:1313"))
+
     // A user wants to see the home page
     it("should show the home page", () => {
 
         // user visits home page
-        cy.visit("http://localhost:1313")
 
         // it contains a link to tour of heroes page
-        cy.get("nav").contains("Tourofheroes")
+        cy.get("header").contains(/TOUR/)
     })
 
     // A user creates a hero
     it("should create a hero", () => {
 
         // user visit /tourofheroes/heroes
-        cy.visit("http://localhost:1313/tourofheroes/heroes")
+        cy.getByCy("navLink").click()
+        cy.location("pathname").should("eq", "/tourofheroes/heroes")
 
-        // A form should be visible
-        cy.get("form").should("be.visible")
+        cy.getByCy("add-button").click()
+        cy.location("pathname").should("eq", "/tourofheroes/heroes/add-hero")
+        cy.getByCy("hero-detail").should("be.visible")
 
-        // user fills in form
-        // user submits form
-
-        // user should receive 'hero created" and redirected to hero detail 
-        // page
+        cy.getByCy("refresh-button").click()
+        cy.location("pathname").should("eq", "/tourofheroes/heroes")
+        cy.getByCy("hero-list").should("be.visible")
     })
 
     it("should delete a hero", () => {
@@ -36,7 +38,11 @@ describe("Heroes", () => {
 
     it("should edit a hero", () => {
 
-        // user edits a hero
+        cy.getByCy("navLink").click()
+        cy.location("pathname").should("eq", "/tourofheroes/heroes")
+
+        cy.getByCy("edit-button").first().click()
+        cy.location("pathname").should("eq", "/tourofheroes/heroes/edit-hero/HeroAslaug")
     })
 })
 
@@ -52,18 +58,13 @@ describe("Boy", () => {
         cy.visit("http://localhost:1313")
 
         // it contains a link to tour of heroes page
-        cy.get("nav").contains("Tourofheroes")
+        cy.get("header").contains(/TOUR/)
     })
 
     // A user creates a boy
     it("should create a boy", () => {
 
         // user visit /tourofheroes/boy
-        cy.visit("http://localhost:1313/tourofheroes/boy")
-
-        // A form should be visible
-        cy.get("form").should("be.visible")
-
         // user fills in form
         // user submits form
 
@@ -91,20 +92,16 @@ describe("Villain", () => {
     it("should show the home page", () => {
 
         // user visits home page
-        cy.visit("http://localhost:1313")
 
         // it contains a link to tour of heroes page
-        cy.get("nav").contains("Tourofheroes")
     })
 
     // A user creates a villain
     it("should create a villain", () => {
 
         // user visit /tourofheroes/villain
-        cy.visit("http://localhost:1313/tourofheroes/villain")
 
         // A form should be visible
-        cy.get("form").should("be.visible")
 
         // user fills in form
         // user submits form

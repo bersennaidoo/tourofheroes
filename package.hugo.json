@@ -76,6 +76,7 @@
     "jest:test": "jest",
     "play:test": "playwright test --project firefox",
     "play:report": "playwright show-report",
+    "ntl:dev": "ntl dev -c 'hugo server -w' --target-port 1313",
     "cy:e2e:run": "cypress run --e2e",
     "cucumber:e2e": "cucumber-js -p test_runner",
     "cy:comp:run": "cypress run --component",

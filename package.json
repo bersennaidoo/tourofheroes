@@ -152,6 +152,7 @@
     "cy:e2e:run": "cypress run --e2e",
     "esbuild:dev": "node ./esmscript.dev.mjs",
     "jest:test": "jest",
+    "ntl:dev": "ntl dev -c 'hugo server -w' --target-port 1313",
     "play:report": "playwright show-report",
     "play:test": "playwright test --project firefox",
     "tsc:dev": "tsc -w"

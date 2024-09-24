@@ -1,6 +1,6 @@
 baseURL: "https://example.org/"
 languageCode: "en-us"
-title: "Hi Time"
+title: "Tour Of Heroes"
 enableEmoji: true
 
 markup:
@@ -41,6 +41,10 @@ menus:
       name: "Tourofheroes"
       url: "/tourofheroes"
       weight: 200
+    - identifier: About
+      name: About
+      url: /about
+      weight: 300
 
   footer:
     - identifier: "About"
