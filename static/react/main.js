@@ -25254,6 +25254,13 @@
     }, [basename, navigator2, routePathnamesJson, locationPathname, dataRouterContext]);
     return navigate;
   }
+  function useParams() {
+    let {
+      matches
+    } = React.useContext(RouteContext);
+    let routeMatch = matches[matches.length - 1];
+    return routeMatch ? routeMatch.params : {};
+  }
   function useResolvedPath(to, _temp2) {
     let {
       relative
@@ -25842,6 +25849,28 @@
     (!target || target === "_self") && // Let browser handle "target=_blank" etc.
     !isModifiedEvent(event);
   }
+  function createSearchParams(init) {
+    if (init === void 0) {
+      init = "";
+    }
+    return new URLSearchParams(typeof init === "string" || Array.isArray(init) || init instanceof URLSearchParams ? init : Object.keys(init).reduce((memo2, key) => {
+      let value = init[key];
+      return memo2.concat(Array.isArray(value) ? value.map((v) => [key, v]) : [[key, value]]);
+    }, []));
+  }
+  function getSearchParamsForLocation(locationSearch, defaultSearchParams) {
+    let searchParams = createSearchParams(locationSearch);
+    if (defaultSearchParams) {
+      defaultSearchParams.forEach((_, key) => {
+        if (!searchParams.has(key)) {
+          defaultSearchParams.getAll(key).forEach((value) => {
+            searchParams.append(key, value);
+          });
+        }
+      });
+    }
+    return searchParams;
+  }
   var _formDataSupportsSubmitter = null;
   function isFormDataSubmitterSupported() {
     if (_formDataSupportsSubmitter === null) {
@@ -26254,6 +26283,25 @@
       }
     }, [location, navigate, path, replaceProp, state, target, to, preventScrollReset, relative, unstable_viewTransition]);
   }
+  function useSearchParams(defaultInit) {
+    true ? warning(typeof URLSearchParams !== "undefined", "You cannot use the `useSearchParams` hook in a browser that does not support the URLSearchParams API. If you need to support Internet Explorer 11, we recommend you load a polyfill such as https://github.com/ungap/url-search-params.") : void 0;
+    let defaultSearchParamsRef = React2.useRef(createSearchParams(defaultInit));
+    let hasSetSearchParamsRef = React2.useRef(false);
+    let location = useLocation();
+    let searchParams = React2.useMemo(() => (
+      // Only merge in the defaults if we haven't yet called setSearchParams.
+      // Once we call that we want those to take precedence, otherwise you can't
+      // remove a param with setSearchParams({}) if it has an initial value
+      getSearchParamsForLocation(location.search, hasSetSearchParamsRef.current ? null : defaultSearchParamsRef.current)
+    ), [location.search]);
+    let navigate = useNavigate();
+    let setSearchParams = React2.useCallback((nextInit, navigateOptions) => {
+      const newSearchParams = createSearchParams(typeof nextInit === "function" ? nextInit(searchParams) : nextInit);
+      hasSetSearchParamsRef.current = true;
+      navigate("?" + newSearchParams, navigateOptions);
+    }, [navigate, searchParams]);
+    return [searchParams, setSearchParams];
+  }
   function validateClientSideSubmission() {
     if (typeof document === "undefined") {
       throw new Error("You are calling submit during the server render. Try calling submit within a `useEffect` or callback instead.");
@@ -26651,7 +26699,7 @@
     handleRefresh
   }) {
     return /* @__PURE__ */ (0, import_jsx_runtime3.jsxs)("div", { "data-cy": "list-header", className: "content-title-group", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(NavLink, { "data-cy": "title", to: title, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h2", { children: title }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(NavLink, { "data-cy": "title", to: `/tourofheroes/${title}`, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("h2", { children: title }) }),
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("button", { "data-cy": "add-button", onClick: handleAdd, "aria-label": "add", children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(GrAdd, {}) }),
       /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(
         "button",
@@ -26734,10 +26782,13 @@
   var import_jsx_runtime6 = __toESM(require_jsx_runtime());
   var HeroList = (props) => {
     const { heroes, handleDeleteHero } = props;
-    const handleSelectHero = () => {
+    const navigate = useNavigate();
+    const handleSelectHero = (heroId) => {
+      const hero = heroes.find((h) => h.id === heroId);
+      navigate(`/tourofheroes/heroes/edit-hero/${hero?.id}?name=${hero?.name}&description=${hero?.description}`);
       console.log("handleSelectHero");
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("ul", { "data-cy": "hero-list", children: heroes.map((hero, index) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("li", { "data-cy": `hero-list-item-${index}`, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("ul", { "data-cy": "hero-list", className: "list", children: heroes.map((hero, index) => /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("li", { "data-cy": `hero-list-item-${index}`, children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CardContent, { name: hero.name, description: hero.description }),
       /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("footer", { children: [
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
@@ -26753,7 +26804,7 @@
           {
             label: "Edit",
             IconClass: FaEdit,
-            onClick: handleSelectHero
+            onClick: () => handleSelectHero(hero.id)
           }
         )
       ] })
@@ -26854,13 +26905,21 @@
   var import_jsx_runtime9 = __toESM(require_jsx_runtime());
   var HeroDetail = (props) => {
     const { hero } = props;
+    const { id } = useParams();
+    const [searchParams] = useSearchParams();
+    const name = searchParams.get("name");
+    const description = searchParams.get("description");
+    const navigate = useNavigate();
     const [heroe, setHeroe] = (0, import_react5.useState)({ ...hero });
-    const handleCancel = () => console.log("handleCancel");
+    const handleCancel = () => {
+      navigate("/tourofheroes/heroes");
+      console.log("handleCancel");
+    };
     const updateHero = () => console.log("updateHero");
     const createHero = () => console.log("createHero");
     const handleSave = () => {
       console.log("handleSave");
-      return hero.name ? updateHero() : createHero();
+      return hero?.name ? updateHero() : createHero();
     };
     const handleNameChange = (e) => {
       console.log("handleNameChange");
@@ -26871,13 +26930,16 @@
       setHeroe({ ...heroe, description: e.target.value });
     };
     return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { "data-cy": "hero-detail", className: "card edit-detail", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("header", { className: "card-header", children: /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { className: "card-header-title", children: hero.name }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("header", { className: "card-header", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { className: "card-header-title", children: hero?.name }),
+        "\xA0"
+      ] }),
       /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("div", { className: "card-content", children: /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { className: "content", children: [
-        hero.id && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+        id && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
           InputDetail,
           {
             name: "id",
-            value: hero.id,
+            value: id,
             readOnly: true
           }
         ),
@@ -26885,7 +26947,7 @@
           InputDetail,
           {
             name: "name",
-            value: hero.name,
+            value: name ? name : "",
             placeholder: "e.g. Colleen",
             onChange: handleNameChange
           }
@@ -26894,7 +26956,7 @@
           InputDetail,
           {
             name: "description",
-            value: hero.description,
+            value: description ? description : "",
             placeholder: "e.g. dance fight!",
             onChange: handleDescriptionChange
           }
@@ -26955,6 +27017,7 @@
           }
         ),
         /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { path: "/add-hero", element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(HeroDetail_default, { hero: heroes_default[0] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { path: "/edit-hero/:id", element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(HeroDetail_default, {}) }),
         /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Route, { path: "*", element: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(HeroList_default, { heroes: heroes_default, handleDeleteHero }) })
       ] }) }) }),
       showModal && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(

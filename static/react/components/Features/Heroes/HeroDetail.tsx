@@ -1,25 +1,35 @@
 import React, { FC, useState, useEffect, ChangeEvent } from "react";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Hero } from "../../../models/Hero/Hero";
 import InputDetail from "../../blocks/InputDetail/input-detail";
 import ButtonFooter from "../../blocks/ButtonFooter/button-footer";
 import { FaUndo, FaRegSave } from "react-icons/fa";
 
 interface IHeroDetailProps {
-  hero: Hero
+  hero?: Hero
 }
 
 const HeroDetail: FC<IHeroDetailProps> = (props: IHeroDetailProps) => {
   const { hero } = props;
+  const { id } = useParams()
+  const [searchParams] = useSearchParams()
+
+  const name = searchParams.get("name")
+  const description = searchParams.get("description")
+  const navigate = useNavigate()
 
   //const [value, setValue] = useState(initialValue)
-  const [heroe, setHeroe] = useState<Hero>({...hero})
+  const [heroe, setHeroe] = useState<Hero>({...hero!})
 
-  const handleCancel = () => console.log("handleCancel");
+  const handleCancel = () => {
+    navigate("/tourofheroes/heroes")
+    console.log("handleCancel");
+  }
   const updateHero = () => console.log("updateHero")
   const createHero = () => console.log("createHero")
   const handleSave = () => {
     console.log("handleSave")
-    return hero.name ? updateHero() : createHero()
+    return hero?.name ? updateHero() : createHero()
   }
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,26 +44,27 @@ const HeroDetail: FC<IHeroDetailProps> = (props: IHeroDetailProps) => {
   return (
     <div data-cy="hero-detail" className="card edit-detail">
       <header className="card-header">
-        <p className="card-header-title">{hero.name}</p>
+        <p className="card-header-title">{hero?.name}</p>
+        &nbsp;
       </header>
       <div className="card-content">
         <div className="content">
-          {hero.id && (
+          {id && (
             <InputDetail
               name={"id"}
-              value={hero.id}
+              value={id}
               readOnly={true}
             ></InputDetail>
           )}
           <InputDetail
             name={"name"}
-            value={hero.name}
+            value={name as string ? name as string : ""}
             placeholder="e.g. Colleen"
             onChange={handleNameChange}
           ></InputDetail>
           <InputDetail
             name={"description"}
-            value={hero.description}
+            value={description as string ? description as string : ""}
             placeholder="e.g. dance fight!"
             onChange={handleDescriptionChange}
           ></InputDetail>

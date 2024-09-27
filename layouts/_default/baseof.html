@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" style="background-color: aliceblue;">
 <head>
   {{ partial "head.html" . }}
 </head>
 <body>
-  <header>
+  <header style="margin-bottom: 55px;">
     {{ partial "tour/header-bar.html" . }}
   </header>
-  <main>
+  <main style="margin-top: 0px;">
     {{ block "main" . }}{{ end }}
   </main>
   <footer>

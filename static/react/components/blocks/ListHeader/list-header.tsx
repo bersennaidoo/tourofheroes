@@ -16,7 +16,7 @@ export default function ListHeader({
 }: ListHeaderProps) {
   return (
     <div data-cy="list-header" className="content-title-group">
-      <NavLink data-cy="title" to={title}>
+      <NavLink data-cy="title" to={`/tourofheroes/${title}`}>
         <h2>{title}</h2>
       </NavLink>
       <button data-cy="add-button" onClick={handleAdd} aria-label="add">

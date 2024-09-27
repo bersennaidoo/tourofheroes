@@ -51,6 +51,7 @@ const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
                element={<HeroList heroes={heroes} handleDeleteHero={handleDeleteHero} />}
             />
             <Route path="/add-hero" element={<HeroDetail hero={heroes[0]} />} />
+            <Route path="/edit-hero/:id" element={<HeroDetail />} />
             <Route path="*" element={<HeroList heroes={heroes} handleDeleteHero={handleDeleteHero} />} />
           </Routes>
         </div>
