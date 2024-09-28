@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CardContent from "../../blocks/CardContent/card-content";
-import { Hero } from "../../../models/Hero/Hero";
+import { Hero } from "../../../domain/models/Hero/Hero";
 import ButtonFooter from "../../blocks/ButtonFooter/button-footer";
 import { FaEdit, FaRegSave } from "react-icons/fa";
 

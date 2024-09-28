@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect, ChangeEvent } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { Hero } from "../../../models/Hero/Hero";
+import { Hero } from "../../../domain/models/Hero/Hero";
 import InputDetail from "../../blocks/InputDetail/input-detail";
 import ButtonFooter from "../../blocks/ButtonFooter/button-footer";
 import { FaUndo, FaRegSave } from "react-icons/fa";

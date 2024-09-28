@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import HeroDetail from "./HeroDetail";
-import { Hero } from "../../../models/Hero/Hero";
+import { Hero } from "../../../domain/models/Hero/Hero";
 import { log } from "console";
 
 describe("HeroDetail", () => {

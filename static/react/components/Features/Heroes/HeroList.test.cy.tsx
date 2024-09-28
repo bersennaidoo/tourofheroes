@@ -1,6 +1,6 @@
 import HeroList from "./HeroList";
 import { BrowserRouter } from "react-router-dom";
-import { Hero } from "../../../models/Hero/Hero";
+import { Hero } from "../../../domain/models/Hero/Hero";
 import heroes from "../../../../../cypress/fixtures/heroes.json";
 
 describe("HeroList", () => {
