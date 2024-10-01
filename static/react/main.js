@@ -1109,7 +1109,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback3(callback, deps) {
+          function useCallback4(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
@@ -1876,7 +1876,7 @@
           exports.memo = memo2;
           exports.startTransition = startTransition;
           exports.unstable_act = act;
-          exports.useCallback = useCallback3;
+          exports.useCallback = useCallback4;
           exports.useContext = useContext3;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
@@ -25818,7 +25818,7 @@
   });
 
   // static/react/main.tsx
-  var import_react7 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // node_modules/react-router-dom/dist/index.js
@@ -28009,7 +28009,7 @@
   var NotFound_default = NotFound;
 
   // static/react/components/Features/Heroes/Heroes.tsx
-  var import_react6 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
 
   // node_modules/react-icons/fi/index.mjs
   function FiRefreshCcw(props) {
@@ -28276,8 +28276,8 @@
   // static/react/domain/services/heroRouteService/heroRouteService.ts
   var HeroRouteService = class {
     constructor() {
-      // create route urls for heroes
-      this.listHero = "http://localhost:4000/heroes";
+      // create routes for heroes
+      this.listHero = "/api/heroes";
       this.addHero = "/api/heroes";
       this.getHeroById = `/api/heroes`;
       this.updateHero = `/api/heroes`;
@@ -28301,13 +28301,12 @@
   };
 
   // static/react/domain/services/heroApiService/heroApiService.ts
+  var import_react6 = __toESM(require_react());
   var import_axios = __toESM(require_axios2());
   var HeroApiService = class {
     constructor() {
-      // list heroes
-      this.listHeroes = async (route) => {
-        const promise1 = await import_axios.default.get(route);
-        const response = await promise1;
+      this.listHeroes = (route) => {
+        const response = this.getData(route);
         return response;
       };
       // add a hero
@@ -28321,6 +28320,18 @@
       // delete a hero
       this.deleteHero = (route) => {
       };
+      this.parseList = (response) => {
+        if (response.status !== 200) throw Error(response.statusText);
+        let list = response.data;
+        if (typeof list !== "object") {
+          list = [];
+        }
+        return list;
+      };
+      this.getData = (0, import_react6.useCallback)(async (route) => {
+        const promise = await import_axios.default.get(route);
+        return this.parseList(promise);
+      }, []);
     }
   };
 
@@ -28341,8 +28352,8 @@
     constructor(heroApiSrv, heroRouteSrv, hookSrv) {
       this.listHeroes = () => {
         const listHeroRoute = this.heroRouteSrv.getListHeroRoute();
-        const heroList = this.heroApiSrv.listHeroes(listHeroRoute);
-        return heroList;
+        const response = this.heroApiSrv.listHeroes(listHeroRoute);
+        return response;
       };
       // add a hero
       this.addHero = (hero) => {
@@ -28381,12 +28392,14 @@
     const heroApiSrv = new HeroApiService();
     const hookSrv = new HookService();
     const heroModel = new HeroModel(heroApiSrv, heroRouterSrv, hookSrv);
-    const [heroes, setHeroes] = (0, import_react6.useState)([]);
-    const [showModal, setShowModal] = (0, import_react6.useState)(false);
+    const [heroes, setHeroes] = (0, import_react7.useState)([]);
+    const [showModal, setShowModal] = (0, import_react7.useState)(false);
     const navigate = useNavigate();
-    (0, import_react6.useEffect)(() => {
+    (0, import_react7.useEffect)(() => {
       const response = heroModel.listHeroes();
-      response.then((result) => setHeroes(result.data));
+      response.then((data) => {
+        setHeroes(data);
+      });
     }, []);
     const handleRefresh = () => {
       navigate("/tourofheroes/heroes");
@@ -28455,7 +28468,7 @@
   var import_jsx_runtime12 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_react7.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(App_default, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_react8.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(App_default, {}) })
   );
 })();
 /*! Bundled license information:

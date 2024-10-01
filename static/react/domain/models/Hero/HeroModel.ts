@@ -18,8 +18,8 @@ export class HeroModel {
 
     public listHeroes = () => {
         const listHeroRoute = this.heroRouteSrv.getListHeroRoute()
-        const heroList = this.heroApiSrv.listHeroes(listHeroRoute)
-        return heroList
+        const response = this.heroApiSrv.listHeroes(listHeroRoute)
+        return response
     }
 
     // add a hero

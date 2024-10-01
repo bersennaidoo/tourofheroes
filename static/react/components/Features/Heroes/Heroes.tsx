@@ -18,6 +18,7 @@ interface IHeroesProps {
 const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
   const {} = props;
 
+  // Create and Inject dependencies into HeroModel
   const heroRouterSrv = new HeroRouteService()
   const heroApiSrv = new HeroApiService()
   const hookSrv = new HookService()
@@ -29,7 +30,10 @@ const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
 
   useEffect(() => {
     const response = heroModel.listHeroes()
-       response.then((result) => setHeroes(result.data))
+    response.then((data) => {
+      setHeroes(data)
+    })
+       //response.then((result) => setHeroes(result.data))
   }, [])
 
   const handleRefresh = () => {

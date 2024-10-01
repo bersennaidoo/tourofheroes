@@ -1,20 +1,30 @@
 describe("Backend e2e", () => {
+  const apiUrl = "http://localhost:8888/api";
 
-    it("should", () => {
+  type Hero = { id: string; name: string; description: string };
 
-        const url = "http://localhost:4000/heroes"
-        type Hero = { id: string; name: string; description: string }
+  const assertProperties = (entity: Hero) => {
+    expect(entity.id).to.be.a("string");
+    expect(entity.name).to.be.a("string");
+    expect(entity.description).to.be.a("string");
+  };
 
-        cy.request({
-            method: "GET",
-            url,
-        })
-          .its("body")
-          .should("have.length.gt", 0)
-          .each((entity: Hero) => {
-            expect(entity.id).to.be.a("string")
-            expect(entity.name).to.be.a("string")
-            expect(entity.description).to.be.a("string")
-          })
-    })
-})
+  const getRoute = (route: string) => {
+    return cy.request({
+      method: "GET",
+      url: `${apiUrl}/${route}`,
+    });
+  }
+
+  it("should GET heroes and villains ", () => {
+    getRoute("heroes")
+      .its("body")
+      .should("have.length.gt", 0)
+      .each(assertProperties);
+
+    getRoute("villains")
+      .its("body")
+      .should("have.length.gt", 0)
+      .each(assertProperties);
+  });
+});

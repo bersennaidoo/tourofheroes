@@ -1,7 +1,7 @@
 export class HeroRouteService {
-    // create route urls for heroes
+    // create routes for heroes
 
-    public listHero = "http://localhost:4000/heroes"
+    public listHero = "/api/heroes"
     public addHero = "/api/heroes"
     public getHeroById = `/api/heroes`
     public updateHero = `/api/heroes`
