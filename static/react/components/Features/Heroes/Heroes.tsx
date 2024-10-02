@@ -33,7 +33,6 @@ const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
     response.then((data) => {
       setHeroes(data)
     })
-       //response.then((result) => setHeroes(result.data))
   }, [])
 
   const handleRefresh = () => {

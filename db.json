@@ -27,52 +27,13 @@
     },
     {
       "id": "HeroThora",
-      "name": "Thora Town-hart",
+      "name": "Murat",
       "description": "daughter of Earl Herrauðr of Götaland"
-    }
-  ],
-  "villains": [
-    {
-      "id": "VillainMadelyn",
-      "name": "Madelyn",
-      "description": "the cat whisperer"
     },
     {
-      "id": "VillainHaley",
-      "name": "Haley",
-      "description": "pen wielder"
-    },
-    {
-      "id": "VillainElla",
-      "name": "Ella",
-      "description": "fashionista"
-    },
-    {
-      "id": "VillainLandon",
-      "name": "Landon",
-      "description": "Mandalorian mauler"
-    }
-  ],
-  "boys": [
-    {
-      "id": "BoyHomelander",
-      "name": "Homelander",
-      "description": "Like Superman, but a jerk."
-    },
-    {
-      "id": "BoyAnnieJanuary",
-      "name": "Annie January",
-      "description": "The Defender of Des Moines."
-    },
-    {
-      "id": "BoyBillyButcher",
-      "name": "Billy Butcher",
-      "description": "A former member of the British special forces turned vigilante."
-    },
-    {
-      "id": "BoyBlackNoir",
-      "name": "Black Noir",
-      "description": "Master Martial Artist, expert hand-to-hand combatant highly trained in various forms of martial arts."
+      "id": "Ragnarok",
+      "name": "Murat",
+      "description": "Lothbrok"
     }
   ]
 }

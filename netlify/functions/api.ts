@@ -18,6 +18,9 @@ import { VillainHandlers } from "./lambdaapi/handlers/VillainHandlers/VillainHan
 import { VillainRoutes } from "./lambdaapi/routes/VillainRoutes/VillainRoutes";
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(cookieParser())
 
 const tldb = new TourOfHeroesLowDB()
 const hsSrv = new HeroStoreService(tldb)
@@ -30,10 +33,6 @@ const hrouter = new HeroRoutes(Router(), hhandler)
 const vrouter = new VillainRoutes(Router(), vhandler)
 
 const irouter = new Index(hrouter, vrouter, Router())
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cookieParser())
 
 app.use("/api/", irouter.router);
 

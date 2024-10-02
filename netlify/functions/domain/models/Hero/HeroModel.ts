@@ -11,4 +11,18 @@ export class HeroModel {
 
         return heroes
     }
+
+    public createHero = (hero: Hero): Hero | string => {
+
+        const chero = this.heroStoreSrv.createHero(hero)
+
+        return chero
+    }
+
+    public editHero = (id: string, hero: Hero): Hero | string => {
+
+        const eheroe = this.heroStoreSrv.editHero(id, hero)
+
+        return eheroe
+    }
 }
