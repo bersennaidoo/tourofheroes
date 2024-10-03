@@ -25,4 +25,18 @@ export class HeroModel {
 
         return eheroe
     }
+
+    public resetHeroes = (): Hero[] | string => {
+
+        const rheroes = this.heroStoreSrv.resetHeroes()
+
+        return rheroes
+    }
+
+    public deleteHero = (id: string): Hero | string => {
+
+        const result = this.heroStoreSrv.deleteHero(id)
+
+        return result
+    }
 }

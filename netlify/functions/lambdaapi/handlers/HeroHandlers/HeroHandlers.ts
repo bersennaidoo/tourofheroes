@@ -44,4 +44,27 @@ export class HeroHandlers {
       });
     }
   };
+
+  public resetHeroes = async (req: Request, res: Response) => {
+    const heroes = this.heroModel.resetHeroes();
+    try {
+      res.status(200).json(heroes);
+    } catch (err) {
+      res.status(500).json({
+        message: "Internal Server Error!",
+      });
+    }
+  };
+
+  public deleteHero = async (req: Request, res: Response) => {
+    const id = req.params.id
+    const result = this.heroModel.deleteHero(id);
+    try {
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json({
+        message: "Internal Server Error!",
+      });
+    }
+  };
 }

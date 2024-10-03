@@ -30,4 +30,32 @@ export class HeroStoreService implements HeroStorer {
 
     return hero;
   };
+
+  public deleteHero = (id: string): Hero | string => {
+    let db = this.hldb.initialHeroDB();
+    db.read();
+
+    db.data.heroes.forEach((h, i) => {
+      if (h.id === id) {
+        delete db.data.heroes[i];
+        const newHeroes = db.data.heroes.filter((v) => v !== null)
+        db.data.heroes = newHeroes
+        db.write()
+      }
+    });
+
+    return "hero deleted";
+  };
+
+   public resetHeroes = (): Hero[] | string => {
+    const db = this.hldb.initialHeroDB();
+    db.read();
+
+    db.data.heroes = []
+
+    db.write()
+
+    return db.data.heroes;
+  };
+
 }

@@ -1,10 +1,12 @@
 import { Villains } from "./Villains";
 import { Data } from "./Data";
 import { JSONFileSyncPreset } from "lowdb/node";
+import { Boys } from "./Boys";
 
 export class TourOfHeroesLowDB {
   defaultData: Data;
   defaultVillain: Villains;
+  defaultBoy: Boys
 
   public initialHeroDB = () => {
     this.defaultData = {
@@ -25,4 +27,15 @@ export class TourOfHeroesLowDB {
 
     return db;
   };
+
+   public initialBoyDB = () => {
+    this.defaultBoy = {
+      boys: [
+      ],
+    };
+    const db = JSONFileSyncPreset<Boys>("boys.json", this.defaultBoy);
+
+    return db;
+  };
+
 }

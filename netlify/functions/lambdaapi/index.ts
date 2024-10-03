@@ -15,7 +15,9 @@ export class Index {
         this.router = router
 
         this.router.use("/heroes", this.heroRoute.router)
+        this.router.use("/h/reset", this.heroRoute.router)
         this.router.use("/villains", this.villainRoute.router)
+        this.router.use("/v/reset", this.villainRoute.router)
 
     }
 }

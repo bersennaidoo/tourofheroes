@@ -12,10 +12,12 @@ export class HeroRoutes {
     this.router
       .route("/")
       .get(this.hhandler.listHeroes)
-      .post(this.hhandler.createHero)
+      .post(this.hhandler.createHero);
 
-    this.router 
-      .route("/:id")
-      .put(this.hhandler.editHero)
+    this.router.route("/:id").put(this.hhandler.editHero);
+
+    this.router.route("/:id").delete(this.hhandler.deleteHero);
+
+    this.router.route("/").delete(this.hhandler.resetHeroes);
   }
 }
