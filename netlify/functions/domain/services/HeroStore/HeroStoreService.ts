@@ -58,4 +58,18 @@ export class HeroStoreService implements HeroStorer {
     return db.data.heroes;
   };
 
+  public getHeroById = (id: string): Hero | undefined => {
+
+    const db = this.hldb.initialHeroDB()
+    db.read()
+
+    const hero = db.data.heroes.find((h) => h.id === id)
+
+    if (hero === undefined) {
+      return undefined
+    }
+
+    return hero as Hero
+  }
+
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Villain } from "../../models/Villain/Villain";
 
-const seedVillains = (list: Villain[]) => {
+export const seedVillains = (list: Villain[]) => {
   list.forEach((element) => {
     axios
       .post("http://localhost:8888/api/villains", element)

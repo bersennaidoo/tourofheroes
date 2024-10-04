@@ -13,11 +13,11 @@ export class HeroRoutes {
       .route("/")
       .get(this.hhandler.listHeroes)
       .post(this.hhandler.createHero);
+      
 
     this.router.route("/:id").put(this.hhandler.editHero);
-
+    this.router.route("/:id").get(this.hhandler.getHeroById);
     this.router.route("/:id").delete(this.hhandler.deleteHero);
-
     this.router.route("/").delete(this.hhandler.resetHeroes);
   }
 }

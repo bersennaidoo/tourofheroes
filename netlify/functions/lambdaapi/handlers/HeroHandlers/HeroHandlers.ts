@@ -57,14 +57,24 @@ export class HeroHandlers {
   };
 
   public deleteHero = async (req: Request, res: Response) => {
-    const id = req.params.id
+    const id = req.params.id;
     const result = this.heroModel.deleteHero(id);
     try {
       res.status(200).json(result);
     } catch (err) {
       res.status(500).json({
-        message: "Internal Server Error!",
+        message: "Not Found!",
       });
     }
+  };
+
+  public getHeroById = async (req: Request, res: Response) => {
+    const id = req.params.id;
+
+    const hero = this.heroModel.getHeroById(id);
+    if (hero === undefined) {
+      res.sendStatus(404)
+    }
+    res.status(200).json(hero);
   };
 }

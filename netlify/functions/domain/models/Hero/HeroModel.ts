@@ -39,4 +39,15 @@ export class HeroModel {
 
         return result
     }
+
+    public getHeroById = (id: string): Hero | undefined => {
+
+        const hero = this.heroStoreSrv.getHeroById(id)
+
+        if (hero === undefined) {
+            return undefined
+        }
+
+        return hero
+    }
 }

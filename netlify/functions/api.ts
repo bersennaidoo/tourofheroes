@@ -2,6 +2,7 @@ import express, { Router } from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser"
 import serverless from "serverless-http";
+import cors, { CorsOptions } from "cors"
 import { Index } from "./lambdaapi/index"
 import { OrderHandlers } from "./lambdaapi/handlers/orderHandlers/orderHandlers";
 import { OrderRoutes } from "./lambdaapi/routes/orderRoutes/orderRoutes";
@@ -17,7 +18,18 @@ import { VillainModel } from "./domain/models/Villain/VillainModel";
 import { VillainHandlers } from "./lambdaapi/handlers/VillainHandlers/VillainHandlers";
 import { VillainRoutes } from "./lambdaapi/routes/VillainRoutes/VillainRoutes";
 
+const whitelist = ["https://tourofheros.netlify.app", "http://localhost:5173"]
+const corsOptions: CorsOptions = {
+    origin: (orig, cb) => {
+        if(whitelist.indexOf(orig as string) !== -1 || !orig) {
+            cb(null, true)
+        } else {
+            cb(new Error("Not allowed by CORS"))
+        }
+    }
+}
 const app = express();
+app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cookieParser())
