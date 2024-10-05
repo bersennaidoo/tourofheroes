@@ -24,16 +24,17 @@ const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
   const hookSrv = new HookService()
   const heroModel = new HeroModel(heroApiSrv, heroRouterSrv, hookSrv)
 
-  const [heroes, setHeroes] = useState<Hero[]>([])
+  //const [heroes, setHeroes] = useState<Hero[]>([])
+  const { data: heroes = [] } = heroModel.listHeroes()
   const [showModal, setShowModal] = useState<boolean>(false);
   const navigate = useNavigate()
 
-  useEffect(() => {
+  /*useEffect(() => {
     const response = heroModel.listHeroes()
     response.then((data) => {
       setHeroes(data)
     })
-  }, [])
+  }, [])*/
 
   const handleRefresh = () => {
     navigate("/tourofheroes/heroes")

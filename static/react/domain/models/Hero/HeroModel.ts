@@ -16,11 +16,18 @@ export class HeroModel {
         this.hookSrv = hookSrv
     }
 
-    public listHeroes = () => {
+    /*public listHeroes = () => {
         const listHeroRoute = this.heroRouteSrv.getListHeroRoute()
         const response = this.heroApiSrv.listHeroes(listHeroRoute)
         return response
+    }*/
+    
+    public listHeroes = () => {
+        const listHeroRoute = this.heroRouteSrv.getListHeroRoute()
+        const data = this.hookSrv.useAxios(listHeroRoute)
+        return data
     }
+
 
     // add a hero
     public addHero = (hero: Hero) => {

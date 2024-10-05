@@ -1,6 +1,6 @@
 describe("Create hero", () => {
 
-    beforeEach(() => cy.visit("/tourofheroes"))
+    beforeEach(() => cy.visit("http://localhost:8888/tourofheroes"))
 
     it("should go throug the refresh flow", () => {
 

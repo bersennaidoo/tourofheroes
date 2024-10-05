@@ -4,7 +4,7 @@
 describe("Heroes", () => {
 
     beforeEach(() =>  
-        cy.visit("http://localhost:1313"))
+        cy.visit("http://localhost:8888"))
 
     // A user wants to see the home page
     it("should show the home page", () => {

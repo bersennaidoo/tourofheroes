@@ -1,6 +1,11 @@
 describe("Edit hero", () => {
 
-    beforeEach(() => cy.visit("/tourofheroes"))
+    beforeEach(() => {
+        cy.intercept("GET", "/api/heroes").as("getHeroes")
+        cy.visit("http://localhost:8888/tourofheroes")
+        cy.wait("@getHeroes")
+        cy.location("pathname").should("eq", "/tourofheroes/heroes")
+    })
 
     it("should go through the cancel flow", () => {
 

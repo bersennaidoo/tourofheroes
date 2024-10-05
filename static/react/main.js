@@ -1085,7 +1085,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState6(initialState) {
+          function useState7(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1097,7 +1097,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect7(create, deps) {
+          function useEffect8(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1109,7 +1109,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback4(callback, deps) {
+          function useCallback5(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
@@ -1876,11 +1876,11 @@
           exports.memo = memo2;
           exports.startTransition = startTransition;
           exports.unstable_act = act;
-          exports.useCallback = useCallback4;
+          exports.useCallback = useCallback5;
           exports.useContext = useContext3;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect7;
+          exports.useEffect = useEffect8;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -1888,7 +1888,7 @@
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer;
           exports.useRef = useRef4;
-          exports.useState = useState6;
+          exports.useState = useState7;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -25792,21 +25792,21 @@
         utils.extend(instance, context);
         return instance;
       }
-      var axios2 = createInstance(defaults);
-      axios2.Axios = Axios;
-      axios2.create = function create(instanceConfig) {
-        return createInstance(mergeConfig(axios2.defaults, instanceConfig));
+      var axios3 = createInstance(defaults);
+      axios3.Axios = Axios;
+      axios3.create = function create(instanceConfig) {
+        return createInstance(mergeConfig(axios3.defaults, instanceConfig));
       };
-      axios2.Cancel = require_Cancel();
-      axios2.CancelToken = require_CancelToken();
-      axios2.isCancel = require_isCancel();
-      axios2.all = function all(promises) {
+      axios3.Cancel = require_Cancel();
+      axios3.CancelToken = require_CancelToken();
+      axios3.isCancel = require_isCancel();
+      axios3.all = function all(promises) {
         return Promise.all(promises);
       };
-      axios2.spread = require_spread();
-      axios2.isAxiosError = require_isAxiosError();
-      module.exports = axios2;
-      module.exports.default = axios2;
+      axios3.spread = require_spread();
+      axios3.isAxiosError = require_isAxiosError();
+      module.exports = axios3;
+      module.exports.default = axios3;
     }
   });
 
@@ -25818,7 +25818,7 @@
   });
 
   // static/react/main.tsx
-  var import_react8 = __toESM(require_react());
+  var import_react9 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // node_modules/react-router-dom/dist/index.js
@@ -28009,7 +28009,7 @@
   var NotFound_default = NotFound;
 
   // static/react/components/Features/Heroes/Heroes.tsx
-  var import_react7 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
 
   // node_modules/react-icons/fi/index.mjs
   function FiRefreshCcw(props) {
@@ -28336,8 +28336,45 @@
   };
 
   // static/react/domain/services/hookService/hookService.ts
+  var import_axios2 = __toESM(require_axios2());
+  var import_react7 = __toESM(require_react());
   var HookService = class {
     constructor() {
+      this.getItem = (route) => {
+        return (0, import_axios2.default)({
+          method: "GET",
+          baseURL: `${route}`
+        }).then((res) => res.data).catch((err) => {
+          throw Error(`There was a problem fetching data: ${err}`);
+        });
+      };
+      this.useAxios = (url) => {
+        const [data, setData] = (0, import_react7.useState)();
+        const [error, setError] = (0, import_react7.useState)(null);
+        const [status, setStatus] = (0, import_react7.useState)("idle");
+        const getItemCb = (0, import_react7.useCallback)((route) => {
+          return this.getItem(route);
+        }, []);
+        (0, import_react7.useEffect)(() => {
+          let doUpdate = true;
+          setData(void 0);
+          setError(null);
+          setStatus("loading");
+          getItemCb(url).then((data2) => {
+            if (doUpdate) {
+              setData(data2);
+              setStatus("success");
+            }
+          }).catch((error2) => {
+            if (doUpdate) {
+              setError(error2);
+              setStatus("error");
+            }
+          });
+          return () => doUpdate = false;
+        }, [url]);
+        return { data, status, error };
+      };
       this.useEntityParams = () => {
         const [searchParams] = useSearchParams();
         const name = searchParams.get("name");
@@ -28350,10 +28387,15 @@
   // static/react/domain/models/Hero/HeroModel.ts
   var HeroModel = class {
     constructor(heroApiSrv, heroRouteSrv, hookSrv) {
+      /*public listHeroes = () => {
+          const listHeroRoute = this.heroRouteSrv.getListHeroRoute()
+          const response = this.heroApiSrv.listHeroes(listHeroRoute)
+          return response
+      }*/
       this.listHeroes = () => {
         const listHeroRoute = this.heroRouteSrv.getListHeroRoute();
-        const response = this.heroApiSrv.listHeroes(listHeroRoute);
-        return response;
+        const data = this.hookSrv.useAxios(listHeroRoute);
+        return data;
       };
       // add a hero
       this.addHero = (hero) => {
@@ -28392,15 +28434,9 @@
     const heroApiSrv = new HeroApiService();
     const hookSrv = new HookService();
     const heroModel = new HeroModel(heroApiSrv, heroRouterSrv, hookSrv);
-    const [heroes, setHeroes] = (0, import_react7.useState)([]);
-    const [showModal, setShowModal] = (0, import_react7.useState)(false);
+    const { data: heroes = [] } = heroModel.listHeroes();
+    const [showModal, setShowModal] = (0, import_react8.useState)(false);
     const navigate = useNavigate();
-    (0, import_react7.useEffect)(() => {
-      const response = heroModel.listHeroes();
-      response.then((data) => {
-        setHeroes(data);
-      });
-    }, []);
     const handleRefresh = () => {
       navigate("/tourofheroes/heroes");
     };
@@ -28468,7 +28504,7 @@
   var import_jsx_runtime12 = __toESM(require_jsx_runtime());
   var root = import_client.default.createRoot(document.getElementById("root"));
   root.render(
-    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_react8.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(App_default, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_react9.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(App_default, {}) })
   );
 })();
 /*! Bundled license information:
