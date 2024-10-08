@@ -30781,6 +30781,7 @@
         const navigate = useNavigate();
         return useMutation((item) => this.createItem(route, item), {
           onSuccess: (newData) => {
+            queryClient2.invalidateQueries({ queryKey: ["heroes"] });
             queryClient2.setQueryData(["heroes"], (oldData) => [
               ...oldData || [],
               newData
@@ -30837,6 +30838,7 @@
         const mutation = useMutation((item) => this.editItem(route, item), {
           onSuccess: (updatedHero) => {
             console.log(updatedHero);
+            queryClient2.invalidateQueries({ queryKey: ["heroes"] });
             this.updateHeroesCache(updatedHero, queryClient2);
             navigate("tourofheroes/heroes");
           }

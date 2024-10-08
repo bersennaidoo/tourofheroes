@@ -47,6 +47,7 @@ export class HookService {
 
     return useMutation((item: Hero) => this.createItem(route, item), {
       onSuccess: (newData: Hero) => {
+        queryClient.invalidateQueries({ queryKey: ["heroes"]})
         queryClient.setQueryData(["heroes"], (oldData: Hero[] | undefined) => [
           ...(oldData || []),
           newData,
@@ -64,10 +65,6 @@ export class HookService {
         refetchOnWindowFocus: true,
       }
     );
-
-   /*setTimeout(() => {
-    refetch()
-   }, 3000)*/
 
     return {
       heroes: data,
@@ -119,6 +116,7 @@ export class HookService {
     const mutation = useMutation((item: Hero) => this.editItem(route, item), {
       onSuccess: (updatedHero: Hero) => {
         console.log(updatedHero);
+        queryClient.invalidateQueries({ queryKey: ["heroes"]})
         this.updateHeroesCache(updatedHero, queryClient)
         navigate("tourofheroes/heroes");
       },
