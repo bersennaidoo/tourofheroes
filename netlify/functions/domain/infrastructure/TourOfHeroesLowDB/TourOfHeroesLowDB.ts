@@ -13,7 +13,7 @@ export class TourOfHeroesLowDB {
       heroes: [
       ],
     };
-    const db = JSONFileSyncPreset<Data>("db.json", this.defaultData);
+    const db = JSONFileSyncPreset<Data>("/tmp/db.json", this.defaultData);
 
     return db;
   };
