@@ -1,13 +1,8 @@
 {
   "heroes": [
     {
-      "id": "Aslaug",
-      "name": "Aslaug",
-      "description": "warrior queen"
-    },
-    {
       "id": "Bjorn Ironside",
-      "name": "Bjorn Ironside",
+      "name": "Bjorn WoodSide",
       "description": "king of 9th century Sweden"
     },
     {
@@ -34,6 +29,11 @@
       "id": "Ragnar",
       "name": "Ragnar",
       "description": "Lothbrok"
+    },
+    {
+      "name": "IGotha",
+      "description": "Gotha",
+      "id": "IGotha"
     }
   ]
 }
