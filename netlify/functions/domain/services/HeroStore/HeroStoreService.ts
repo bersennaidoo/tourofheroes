@@ -14,6 +14,8 @@ export class HeroStoreService implements HeroStorer {
 
   public createHero = (hero: Hero): Hero | string => {
     const db = this.hldb.initialHeroDB();
+    db.read()
+    hero.id = hero.name
     db.data.heroes.push(hero);
     db.write();
 
@@ -25,6 +27,7 @@ export class HeroStoreService implements HeroStorer {
     db.read();
 
     let heroIndex = db.data.heroes.findIndex((h) => h.id === id);
+    hero.id = id
     db.data.heroes[heroIndex] = hero
     db.write()
 

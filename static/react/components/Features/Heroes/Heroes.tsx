@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import ListHeader from "../../blocks/ListHeader/list-header";
 //import heroes from "../../../../../cypress/fixtures/heroes.json";
@@ -25,16 +25,12 @@ const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
   const heroModel = new HeroModel(heroApiSrv, heroRouterSrv, hookSrv)
 
   //const [heroes, setHeroes] = useState<Hero[]>([])
-  const { data: heroes = [] } = heroModel.listHeroes()
+  const { heroes: heroes = [], status, getError, refetch } = heroModel.listHeroes()
+  //const [heros, setHeros] = useState<Hero[]>([])
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [heroToDelete, setHeroToDelete] = useState<Hero | null>(null)
+  const { deleteHero, isDeleteError } = heroModel.deleteHero(heroToDelete?.id!)
   const navigate = useNavigate()
-
-  /*useEffect(() => {
-    const response = heroModel.listHeroes()
-    response.then((data) => {
-      setHeroes(data)
-    })
-  }, [])*/
 
   const handleRefresh = () => {
     navigate("/tourofheroes/heroes")
@@ -48,11 +44,14 @@ const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
     setShowModal(false)
   };
 
-  const handleDeleteHero = () => {
+  const handleDeleteHero = (hero: Hero) => {
+    setHeroToDelete(hero)
     setShowModal(true)
   }
 
   const handleDeleteFromModal = () => {
+    //handleDeleteHero(heroToDelete!)
+    heroToDelete ? deleteHero(heroToDelete) : null
     setShowModal(false)
     console.log("handleDeleteFromModal")
   }
@@ -71,8 +70,8 @@ const Heroes: FC<IHeroesProps> = (props: IHeroesProps) => {
                path=""
                element={<HeroList heroes={heroes} handleDeleteHero={handleDeleteHero} />}
             />
-            <Route path="/add-hero" element={<HeroDetail hero={heroes[0]} />} />
-            <Route path="/edit-hero/:id" element={<HeroDetail />} />
+            <Route path="/add-hero" element={<HeroDetail refetch={refetch} />} />
+            <Route path="/edit-hero/:id" element={<HeroDetail refetch={refetch} />} />
             <Route path="*" element={<HeroList heroes={heroes} handleDeleteHero={handleDeleteHero} />} />
           </Routes>
         </div>

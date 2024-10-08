@@ -1,34 +1,44 @@
 {
   "heroes": [
     {
-      "id": "HeroAslaug",
+      "id": "Aslaug",
       "name": "Aslaug",
       "description": "warrior queen"
     },
     {
-      "id": "HeroBjorn",
+      "id": "Bjorn Ironside",
       "name": "Bjorn Ironside",
       "description": "king of 9th century Sweden"
     },
     {
-      "id": "HeroIvar",
+      "id": "Ivar the Boneless",
       "name": "Ivar the Boneless",
       "description": "commander of the Great Heathen Army"
     },
     {
-      "id": "HeroLagertha",
+      "id": "Lagertha the Shieldmaiden",
       "name": "Lagertha the Shieldmaiden",
       "description": "aka Hlaðgerðr"
     },
     {
-      "id": "HeroRagnar",
+      "id": "Ragnar Lothbrok",
       "name": "Ragnar Lothbrok",
       "description": "aka Ragnar Sigurdsson"
     },
     {
-      "id": "HeroThora",
+      "id": "Thora Town-hart",
       "name": "Thora Town-hart",
       "description": "daughter of Earl Herrauðr of Götaland"
+    },
+    {
+      "id": "Ragnar",
+      "name": "Ragnar",
+      "description": "Lothbrok"
+    },
+    {
+      "name": "We",
+      "description": "We",
+      "id": "We"
     }
   ]
 }

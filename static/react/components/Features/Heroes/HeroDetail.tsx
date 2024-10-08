@@ -1,16 +1,27 @@
 import React, { FC, useState, useEffect, ChangeEvent } from "react";
+import { RefetchOptions, RefetchQueryFilters, QueryObserverResult } from "react-query";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Hero } from "../../../domain/models/Hero/Hero";
 import InputDetail from "../../blocks/InputDetail/input-detail";
 import ButtonFooter from "../../blocks/ButtonFooter/button-footer";
 import { FaUndo, FaRegSave } from "react-icons/fa";
+import { HeroRouteService } from "../../../domain/services/heroRouteService/heroRouteService";
+import { HeroApiService } from "../../../domain/services/heroApiService/heroApiService";
+import { HookService } from "../../../domain/services/hookService/hookService";
+import { HeroModel } from "../../../domain/models/Hero/HeroModel";
+import { Certificate } from "crypto";
 
 interface IHeroDetailProps {
-  hero?: Hero
+   refetch: <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined) => Promise<QueryObserverResult<any, unknown>>
 }
 
 const HeroDetail: FC<IHeroDetailProps> = (props: IHeroDetailProps) => {
-  const { hero } = props;
+  const { refetch } = props
+     // Create and Inject dependencies into HeroModel
+  const heroRouterSrv = new HeroRouteService()
+  const heroApiSrv = new HeroApiService()
+  const hookSrv = new HookService()
+  const heroModel = new HeroModel(heroApiSrv, heroRouterSrv, hookSrv)
   const { id } = useParams()
   const [searchParams] = useSearchParams()
 
@@ -19,32 +30,34 @@ const HeroDetail: FC<IHeroDetailProps> = (props: IHeroDetailProps) => {
   const navigate = useNavigate()
 
   //const [value, setValue] = useState(initialValue)
-  const [heroe, setHeroe] = useState<Hero>({...hero!})
+  const [hero, setHero] = useState({id, name, description})
+  const { mutate: createHero, status, error: postError } = heroModel.addHero()
+  const { mutate: updateHero, isLoading, isError } = heroModel.updateHero(id as string)
 
   const handleCancel = () => {
     navigate("/tourofheroes/heroes")
     console.log("handleCancel");
   }
-  const updateHero = () => console.log("updateHero")
-  const createHero = () => console.log("createHero")
+  //const updateHero = () => console.log("updateHero")
   const handleSave = () => {
     console.log("handleSave")
-    return hero?.name ? updateHero() : createHero()
+    //updateHero(hero as Hero)
+   return name as string ? updateHero(hero as Hero) : createHero(hero as Hero)
   }
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handleNameChange")
-    setHeroe({ ...heroe, name: e.target.value })
+    setHero({ ...hero, name: e.target.value })
   }
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("handleDescriptionChange")
-    setHeroe({ ...heroe, description: e.target.value })
+    setHero({ ...hero, description: e.target.value })
   }
 
   return (
     <div data-cy="hero-detail" className="card edit-detail">
       <header className="card-header">
-        <p className="card-header-title">{hero?.name}</p>
+        <p className="card-header-title">{name}</p>
         &nbsp;
       </header>
       <div className="card-content">

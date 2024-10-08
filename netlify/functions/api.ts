@@ -18,7 +18,7 @@ import { VillainModel } from "./domain/models/Villain/VillainModel";
 import { VillainHandlers } from "./lambdaapi/handlers/VillainHandlers/VillainHandlers";
 import { VillainRoutes } from "./lambdaapi/routes/VillainRoutes/VillainRoutes";
 
-const whitelist = ["https://tourofheros.netlify.app", "http://localhost:5173"]
+const whitelist = ["https://tourofheros.netlify.app", "http://localhost:5173", "http://localhost:8888"]
 const corsOptions: CorsOptions = {
     origin: (orig, cb) => {
         if(whitelist.indexOf(orig as string) !== -1 || !orig) {

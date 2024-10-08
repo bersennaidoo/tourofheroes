@@ -1,10 +1,12 @@
 describe("Create hero", () => {
 
-    beforeEach(() => cy.visit("http://localhost:8888/tourofheroes"))
-
     it("should go throug the refresh flow", () => {
 
+        cy.intercept("GET", "http://localhost:8888/api/heroes").as("getHeroes")
+        cy.visit("http://localhost:8888/tourofheroes")
+        cy.wait("@getHeroes")
         cy.location("pathname").should("eq", "/tourofheroes/heroes")
+
         cy.getByCy("add-button").click()
         cy.location("pathname").should("eq", "/tourofheroes/heroes/add-hero")
         cy.getByCy("hero-detail").should("be.visible")

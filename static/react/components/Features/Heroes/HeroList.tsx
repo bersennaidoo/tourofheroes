@@ -7,7 +7,7 @@ import { FaEdit, FaRegSave } from "react-icons/fa";
 
 interface IHeroListProps {
   heroes: Hero[];
-  handleDeleteHero: () => void
+  handleDeleteHero: (hero: Hero) => void
 }
 
 const HeroList: FC<IHeroListProps> = (props: IHeroListProps) => {
@@ -24,14 +24,14 @@ const HeroList: FC<IHeroListProps> = (props: IHeroListProps) => {
   return (
     <ul data-cy="hero-list" className="list">
       {heroes.map((hero, index) => (
-        <li data-cy={`hero-list-item-${index}`} key={hero.id}>
+        <li data-cy={`hero-list-item-${index}`} key={index}>
           <div>
             <CardContent name={hero.name} description={hero.description} />
             <footer>
               <ButtonFooter
                 label="Delete"
                 IconClass={FaRegSave}
-                onClick={handleDeleteHero}
+                onClick={() => handleDeleteHero(hero)}
               />
               <ButtonFooter
                 label="Edit"

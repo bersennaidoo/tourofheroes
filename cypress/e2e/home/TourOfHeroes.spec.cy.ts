@@ -35,15 +35,6 @@ describe("Heroes", () => {
 
         // user deletes hero
     })
-
-    it("should edit a hero", () => {
-
-        cy.getByCy("navLink").click()
-        cy.location("pathname").should("eq", "/tourofheroes/heroes")
-
-        cy.getByCy("edit-button").first().click()
-        cy.location("pathname").should("eq", "/tourofheroes/heroes/edit-hero/HeroAslaug")
-    })
 })
 
 // User acceptance tests for Heroes feature

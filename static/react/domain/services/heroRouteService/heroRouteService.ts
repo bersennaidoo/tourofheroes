@@ -11,7 +11,7 @@ export class HeroRouteService {
         return this.deleteHero + `/${id}`
     }
     public getUpdateHeroRoute = (id: string) => {
-        return this.updateHero
+        return this.updateHero + `/${id}`
     }
 
     public getHeroByIdRoute = (id: string) => {

@@ -15,7 +15,7 @@ export class HeroRoutes {
       .post(this.hhandler.createHero);
       
 
-    this.router.route("/:id").put(this.hhandler.editHero);
+    this.router.route("/:id").post(this.hhandler.editHero);
     this.router.route("/:id").get(this.hhandler.getHeroById);
     this.router.route("/:id").delete(this.hhandler.deleteHero);
     this.router.route("/").delete(this.hhandler.resetHeroes);

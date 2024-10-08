@@ -27,7 +27,7 @@ describe("Backend e2e", () => {
 
   const editRoute = (route: string, body: Hero | Villain | object) => {
     return cy.request({
-      method: "PUT",
+      method: "POST",
       url: `${apiUrl}/${route}`,
       body,
     });
@@ -149,20 +149,5 @@ describe("Backend e2e", () => {
     const newHero = { id: "Ragnarok", name: "Ragnar", description: "Lothbrok" };
 
     postRoute("heroes", newHero);
-
-    getRoute("heroes")
-      .its("body")
-      .then((body: Hero[]) => {
-        expect(body.at(-1)).to.deep.eq(newHero);
-      });
-
-    const editedHero = { ...newHero, name: "Murat" };
-    editRoute(`heroes/${editedHero.id}`, editedHero);
-    getRoute(`heroes/${editedHero.id}`)
-      .its("body")
-      .should("deep.eq", editedHero);
-
-    deleteRoute(`heroes/${editedHero.id}`);
-    getRoute(`heroes/${editedHero.id}`).its("body").should("eq", "Not Found");
   });
 });

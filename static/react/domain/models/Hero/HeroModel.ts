@@ -24,24 +24,22 @@ export class HeroModel {
     
     public listHeroes = () => {
         const listHeroRoute = this.heroRouteSrv.getListHeroRoute()
-        const data = this.hookSrv.useAxios(listHeroRoute)
+        const data = this.hookSrv.useGetHeroes(listHeroRoute)
         return data
     }
 
 
     // add a hero
-    public addHero = (hero: Hero) => {
+    public addHero = () => {
         const addHeroRoute = this.heroRouteSrv.getAddHeroRoute()
-        const heroAdded = this.heroApiSrv.addHero(addHeroRoute, hero)
-
-        return heroAdded
+        return this.hookSrv.usePostHero(addHeroRoute)
     }
 
     // update a hero
-    public updateHero = (id: string, hero: Hero) => {
+    public updateHero = (id: string) => {
         const updateHeroRoute = this.heroRouteSrv.getUpdateHeroRoute(id)
-        const heroUpdate = this.heroApiSrv.updateHero(updateHeroRoute, hero)
-        return heroUpdate
+        const heroState = this.hookSrv.usePostHero(updateHeroRoute)
+        return heroState
     }
 
     public getHeroById = (id: string) => {
@@ -54,7 +52,7 @@ export class HeroModel {
     // delete a hero
     public deleteHero = (id: string) => {
         const deleteHeroRoute = this.heroRouteSrv.getDeleteHeroRoute(id)
-        const deletedHero = this.heroApiSrv.deleteHero(deleteHeroRoute)
+        const deletedHero = this.hookSrv.useDeleteHero(deleteHeroRoute)
 
         return deletedHero
     }
