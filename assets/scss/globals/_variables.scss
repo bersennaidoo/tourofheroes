@@ -1,0 +1,47 @@
+// color palette
+$primary: #0072b0; // main brand color a buttons ctas
+$primary-2: #709b90;
+$darkest: #006004; // primary text h1 body copy
+$dark: #006004;    // secondary text
+$medium: #006004;  //
+$light: #006004;   // background body
+$lightest: #006004;
+$white: #006004;
+
+$error: #006004;
+$warning: #006004;
+$success: #006004;
+$info: #006004;
+
+$body-bg: #eee;
+$body-primary-color: $darkest;
+$body-secondary-color: $dark;
+
+// breakpoint 375px to 810px max md devices 
+$breakpoint-md: 23.44rem;
+// breakpoint 810px to 1200px max lg devices 
+$breakpoint-lg: 50.63rem;
+
+// fonts
+$main-font-family: Roboto, sans-serif;
+$font-size-base: 100%;
+$line-height: 1.5;
+$h1-font-size: 2.027rem;
+$h2-font-size: 1.802rem;
+$h3-font-size: 1.602rem;
+$h4-font-size: 1.424rem;
+$h5-font-size: 1.266rem;
+$h6-font-size: 1.125rem;
+
+$bold: bold;
+
+$font-weight: $bold;
+
+$primary-font-size: 1.014rem;
+$secondary-font-size: 0.899rem;
+
+$spacing: 1rem;
+$percentage: 1%;
+$column-width-sm: 23.44rem;
+$column-width-md: 50.63rem;
+$column-width-lg: 73rem;

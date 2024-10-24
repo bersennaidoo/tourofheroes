@@ -1,0 +1,55 @@
+{{ define "main" }}
+<div class="t-container">
+  <header class="c-team">
+    <h1 class="c-team__mheading">Team</h1>
+    <button class="c-team__toggle" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+          </svg>
+    </button>
+  </header>
+  <nav class="c-nav">
+    <ul class="c-nav__site-nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Features</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Support</a></li>
+      <li class="c-nav__nav-right"><a href="#">About</a></li>
+    </ul>
+  </nav>
+  <main class="c-tmain">
+    <div class="c-tmain__column-main c-tmain__tile">
+      <h1 class="c-tmain__tmheading">Team collaboration done right</h1>
+      <p class="c-tmain__intro">
+        Thousands of teams from all over the world turn to <b>Team</b> to
+        communicate and get things done
+      </p>
+    </div>
+    <div class="c-tmain__column-sidebar">
+      <div class="c-tmain__tile">
+        <form class="c-tmain__login-form">
+          <h3 class="c-tmain__sheading">Login</h3>
+          <p class="c-tmain__p1">
+            <label for="username">Username</label>
+            <input class="c-tmain__iusername" id="username" type="text" name="username" />
+          </p>
+          <p>
+            <label for="password">Password</label>
+            <input class="c-tmain__ipassword" id="password" type="password" name="password" />
+          </p>
+          <button class="c-tmain__button" type="submit">Login</button>
+        </form>
+      </div>
+      <div class="c-tmain__tile c-tmain--centered stack">
+        <small>Starting at</small>
+        <div class="c-tmain__cost">
+          <span class="c-tmain__cost-currency">$</span>
+          <span class="c-tmain__cost-dollars">20</span>
+          <span class="c-tmain__cost-cents">.00</span>
+        </div>
+        <a class="c-tmain__cta-button" href="/pricing"> Sign up </a>
+      </div>
+    </div>
+  </main>
+</div>
+{{ end }}

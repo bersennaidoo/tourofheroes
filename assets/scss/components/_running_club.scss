@@ -1,0 +1,76 @@
+.c-container {
+    max-inline-size: $column-width-sm;
+    margin-inline: auto;
+    margin-block: 0;
+}
+
+.c-page-header {
+    color: #fff;
+    background-color: $primary;
+    &__heading {
+        max-inline-size: $column-width-sm;
+        margin-inline: auto;
+        margin-block: 0;
+        padding-inline: $spacing * 1.5;
+        padding-block: $spacing * 1;
+    }
+}
+
+.c-main {
+    padding-inline: $spacing * 1.5;
+    padding-block: $spacing * 1;
+    background-color: #fff;
+}
+
+.c-social-links {
+    max-inline-size: $column-width-sm;
+    padding-inline: $spacing * 1.5;
+    padding-block: $spacing * 1;
+    background-color: #fff;
+    &__button-link {
+        display: block;
+        padding-inline: $spacing / 2;
+        padding-block: $spacing / 2;
+        color: #fff;
+        background-color: $primary;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+    &__button-link + &__button-link {
+        margin-block-start: $spacing;
+    }
+    &__sponsor-link {
+        display: block;
+        color: $primary;
+        font-weight: $bold;
+        text-decoration: none;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .c-container {
+        max-inline-size: $column-width-md;
+    }
+    .c-page-header {
+        &__heading {
+            max-inline-size: $column-width-md;
+        }
+    }
+    .c-social-links {
+        max-inline-size: $column-width-md;
+    }
+}
+@media (min-width: $breakpoint-lg) {
+    .c-container {
+        max-inline-size: $column-width-lg;
+    }
+    .c-page-header {
+        &__heading {
+            max-inline-size: $column-width-lg;
+        }
+    }
+    .c-social-links {
+        max-inline-size: $column-width-lg;
+    }
+}

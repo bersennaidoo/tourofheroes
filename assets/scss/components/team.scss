@@ -1,0 +1,129 @@
+.t-container {
+    max-inline-size: $column-width-sm;
+    margin-inline: auto;
+    margin-block: 0;
+}
+
+.c-nav {
+    &__site-nav {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing;
+        padding-inline: $spacing / 2;
+        padding-block: $spacing / 2;
+        list-style-type: none;
+        background-color: #5f4b44;
+    }
+    &__site-nav > li > a {
+        display: block;
+        padding-inline: $spacing;
+        padding-block: $spacing / 2;
+        background-color: #cc6b5a;
+        color: white;
+        text-decoration: none;
+    }
+}
+
+.c-tmain {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing;
+    &__tile {
+        padding-inline: $spacing * 1.5;
+        padding-block: $spacing * 1.5;
+    }
+    &__column-main {
+        background-color: #fff;
+        flex: 1 1 auto;
+    }
+    &__column-sidebar {
+        background-color: #fff;
+        flex: 1 1 auto;
+    }
+    &__login-form h3 {
+        margin: 0;
+        font-size: $h3-font-size;
+        font-weight: $font-weight;
+        text-align: end;
+        text-transform: uppercase;
+    }
+    &__iusername, &__ipassword {
+        display: block;
+        inline-size: $percentage * 100;
+    }
+    &__button {
+        margin-block-start: $spacing;
+        border: $spacing * 0.066 solid #cc6b5a;
+        background-color: white;
+        padding-inline: $spacing;
+        padding-block: $spacing / 2;
+        cursor: pointer;
+    }
+    &--centered {
+        text-align: center;
+    }
+    &__cost {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 0.7;
+    }
+    &__cost-currency {
+        font-size: $spacing * 2;
+    }
+    &__cost-dollars {
+        font-size: $spacing * 4;
+    }
+    &__cost-cents {
+        font-size: $spacing * 1.5;
+        align-self: flex-start;
+    }
+    &__cta-button {
+        display: block;
+        background-color: #cc6b5a;
+        color: white;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .t-container {
+        max-inline-size: $column-width-md;
+    }
+    .c-nav {
+        &__site-nav {
+            flex-direction: row;
+        }
+    }
+    
+    .c-tmain {
+        flex-direction: row;
+    }
+    .c-team {
+        &__toggle {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+    .t-container {
+        max-inline-size: $column-width-lg;
+    }
+    
+    .c-nav {
+        &__site-nav {
+            flex-direction: row;
+        }
+    }
+    
+    .c-tmain {
+        flex-direction: row;
+    }
+    .c-team {
+        &__toggle {
+            display: none;
+        }
+    }
+}
