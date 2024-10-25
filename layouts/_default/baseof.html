@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" style="background-color: aliceblue;">
+<html lang="en" dir="ltr">
 <head>
   {{ partial "head.html" . }}
 </head>
-<body class="stack">
-  <header style="margin-bottom: 55px;">
-    {{ partial "tour/header-bar.html" . }}
-  </header>
-  <main style="margin-top: 0px;">
+<body>
+  <div class="main-container">
+    {{ partial "headerp/headerp.html" . }}
+    {{ partial "navbarp/navbarp.html" . }}
     {{ block "main" . }}{{ end }}
-  </main>
   <footer>
     {{ partial "footer.html" . }}
   </footer>
+  </div>
 </body>
 </html>

@@ -32,6 +32,7 @@ $h3-font-size: 1.602rem;
 $h4-font-size: 1.424rem;
 $h5-font-size: 1.266rem;
 $h6-font-size: 1.125rem;
+$link-font-size: 1.125rem;
 
 $bold: bold;
 
@@ -42,6 +43,6 @@ $secondary-font-size: 0.899rem;
 
 $spacing: 1rem;
 $percentage: 1%;
-$column-width-sm: 23.44rem;
-$column-width-md: 50.63rem;
-$column-width-lg: 73rem;
+$column-width-sm: 23.44rem; // 375px
+$column-width-md: 50.63rem; // 810px
+$column-width-lg: 76rem; // 1216px

@@ -1,0 +1,362 @@
+.main-container {
+    display: grid;
+    max-inline-size: $column-width-sm;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas: 
+               "header header"
+               "navbar navbar"
+               "main main"
+               "sidebar-top sidebar-top"
+               "sidebar-bottom sidebar-bottom";
+    gap: $spacing;
+    margin-inline: auto;
+    margin-block: 0;
+}
+
+.c-headerp {
+    grid-column: header;
+}
+
+.c-navp {
+    grid-column: navbar;
+    &__site-nav {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing / 2;
+        margin: 0;
+        padding-inline: $spacing / 2;
+        padding-block: $spacing / 2;
+        list-style-type: none;
+    }
+    &__item {
+        flex: 1 1 auto;
+    }
+    &__dropdown {
+        display: none;
+    }
+    &__link {
+        display: block;
+        padding-inline: $spacing;
+        padding-block: $spacing / 2;
+        background-color: $primary;
+        color: white;
+        font-size: $link-font-size;
+        text-decoration: none;
+    }
+    &__toggle {
+        padding-inline: $spacing / 2;
+        padding-block: $spacing / 2;
+        background-color: $primary;
+        color: white;
+    }
+}
+
+.c-main-home {
+    grid-column: main;
+    &--tile {
+        padding-inline: $spacing * 1.5;
+        padding-block: $spacing * 1.5;
+        background-color: #fff;
+    }
+    &--tile > :first-child {
+        margin-block-start: 0;
+    }
+}
+
+.c-sidebar-top {
+    grid-column: sidebar-top;
+    &__sheading {
+        margin: 0;
+        font-size: $spacing * 0.9;
+        font-weight: $font-weight;
+        text-align: right;
+        text-transform: uppercase;
+    }
+    &__iusername, &__ipassword {
+        display: block;
+        inline-size: $percentage * 100;
+    }
+    &__button {
+        margin-block-start: $spacing;
+        border: $spacing * 0.063 solid $primary;
+        background-color: white;
+        padding-inline: $spacing;
+        padding-block: $spacing / 2;
+        cursor: pointer;
+    }
+    &--centered {
+        text-align: center;
+    }
+}
+
+.c-sidebar-bottom {
+    grid-column: sidebar-bottom;
+    &__cost {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 0.7;
+    }
+    &__cost-currency {
+        font-size: $spacing * 2;
+    }
+    &__cost-dollars {
+        font-size: $spacing * 4;
+    }
+    &__cost-cents {
+        font-size: $spacing * 1.5;
+    }
+    &__cta-button {
+        display: block;
+        background-color: $primary;
+        color: white;
+        padding-inline: $spacing * 8.25;
+        padding-block: $spacing / 2;
+        text-decoration: none;
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .main-container {
+        display: grid;
+        max-inline-size: $column-width-md;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: repeat(4, auto);
+        grid-template-areas: 
+                   "header header"
+                   "navbar navbar"
+                   "main sidebar-top"
+                   "main sidebar-bottom";
+
+        gap: $spacing;
+        margin-inline: auto;
+        margin-block: 0;
+    }
+    
+    .c-headerp {
+        grid-column: header;
+    }
+    
+    .c-navp {
+        grid-column: navbar;
+        &__site-nav {
+            display: flex;
+            flex-direction: row;
+            gap: $spacing / 2;
+            margin: 0;
+            padding-inline: $spacing / 2;
+            padding-block: $spacing / 2;
+            list-style-type: none;
+        }
+        &__item {
+            flex: 1 1 auto;
+        }
+        &__dropdown {
+            display: block;
+        }
+        &__link {
+            display: block;
+            padding-inline: $spacing;
+            padding-block: $spacing / 2;
+            background-color: $primary;
+            color: white;
+            font-size: $link-font-size;
+            text-decoration: none;
+        }
+        &__toggle {
+            display: none;
+            padding-inline: $spacing / 2;
+            padding-block: $spacing / 2;
+            background-color: $primary;
+            color: white;
+        }
+    }
+    
+    .c-main-home {
+        grid-column: main;
+        &--tile {
+            padding-inline: $spacing * 1.5;
+            padding-block: $spacing * 1.5;
+            background-color: #fff;
+        }
+        &--tile > :first-child {
+            margin-block-start: 0;
+        }
+    }
+    
+    .c-sidebar-top {
+        grid-column: sidebar-top;
+        &__sheading {
+            margin: 0;
+            font-size: $spacing * 0.9;
+            font-weight: $font-weight;
+            text-align: right;
+            text-transform: uppercase;
+        }
+        &__iusername, &__ipassword {
+            display: block;
+            inline-size: $percentage * 100;
+        }
+        &__button {
+            margin-block-start: $spacing;
+            border: $spacing * 0.063 solid $primary;
+            background-color: white;
+            padding-inline: $spacing;
+            padding-block: $spacing / 2;
+            cursor: pointer;
+        }
+        &--centered {
+            text-align: center;
+        }
+    }
+    
+    .c-sidebar-bottom {
+        grid-column: sidebar-bottom;
+        &__cost {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.7;
+        }
+        &__cost-currency {
+            font-size: $spacing * 2;
+        }
+        &__cost-dollars {
+            font-size: $spacing * 4;
+        }
+        &__cost-cents {
+            font-size: $spacing * 1.5;
+        }
+        &__cta-button {
+            display: block;
+            background-color: $primary;
+            color: white;
+            padding-inline: $spacing * 8.25;
+            padding-block: $spacing / 2;
+            text-decoration: none;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+    .main-container {
+        display: grid;
+        max-inline-size: $column-width-lg;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: repeat(4, auto);
+        grid-template-areas: 
+                   "header header"
+                   "navbar navbar"
+                   "main sidebar-top"
+                   "main sidebar-bottom";
+
+        gap: $spacing;
+        margin-inline: auto;
+        margin-block: 0;
+    }
+    
+    .c-headerp {
+        grid-column: header;
+    }
+    
+    .c-navp {
+        grid-column: navbar;
+        &__site-nav {
+            display: flex;
+            flex-direction: row;
+            gap: $spacing / 2;
+            margin: 0;
+            padding-inline: $spacing / 2;
+            padding-block: $spacing / 2;
+            list-style-type: none;
+        }
+        &__item {
+            flex: 1 1 auto;
+        }
+        &__dropdown {
+            display: block;
+        }
+        &__link {
+            display: block;
+            padding-inline: $spacing;
+            padding-block: $spacing / 2;
+            background-color: $primary;
+            color: white;
+            font-size: $link-font-size;
+            text-decoration: none;
+        }
+        &__toggle {
+            display: none;
+            padding-inline: $spacing / 2;
+            padding-block: $spacing / 2;
+            background-color: $primary;
+            color: white;
+        }
+    }
+    
+    .c-main-home {
+        grid-column: main;
+        &--tile {
+            padding-inline: $spacing * 1.5;
+            padding-block: $spacing * 1.5;
+            background-color: #fff;
+        }
+        &--tile > :first-child {
+            margin-block-start: 0;
+        }
+    }
+    
+    .c-sidebar-top {
+        grid-column: sidebar-top;
+        &__sheading {
+            margin: 0;
+            font-size: $spacing * 0.9;
+            font-weight: $font-weight;
+            text-align: right;
+            text-transform: uppercase;
+        }
+        &__iusername, &__ipassword {
+            display: block;
+            inline-size: $percentage * 100;
+        }
+        &__button {
+            margin-block-start: $spacing;
+            border: $spacing * 0.063 solid $primary;
+            background-color: white;
+            padding-inline: $spacing;
+            padding-block: $spacing / 2;
+            cursor: pointer;
+        }
+        &--centered {
+            text-align: center;
+        }
+    }
+    
+    .c-sidebar-bottom {
+        grid-column: sidebar-bottom;
+        &__cost {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 0.7;
+        }
+        &__cost-currency {
+            font-size: $spacing * 2;
+        }
+        &__cost-dollars {
+            font-size: $spacing * 4;
+        }
+        &__cost-cents {
+            font-size: $spacing * 1.5;
+        }
+        &__cta-button {
+            display: block;
+            background-color: $primary;
+            color: white;
+            padding-inline: $spacing * 8.25;
+            padding-block: $spacing / 2;
+            text-decoration: none;
+        }
+    }
+}
