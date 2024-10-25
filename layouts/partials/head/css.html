@@ -21,6 +21,7 @@
     {{- end }}
   {{- end }}
 {{- end }}*/}}
+<link rel="stylesheet" href="/css/bulma-custom.css" >
 
 {{- with resources.Get "scss/main.scss" | toCSS }}
   {{- if eq hugo.Environment "development" }}
@@ -83,7 +84,6 @@
   {{- end }}
 {{- end }}
 
-<link rel="stylesheet" href="/css/bulma-custom.css" >
 
 
 

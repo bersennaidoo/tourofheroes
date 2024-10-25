@@ -118,7 +118,7 @@ body {
   background-color: #eee; }
 
 .c-container {
-  max-inline-size: 23.44rem;
+  max-inline-size: 25.25rem;
   margin-inline: auto;
   margin-block: 0; }
 
@@ -126,7 +126,7 @@ body {
   color: #fff;
   background-color: #0072b0; }
   .c-page-header__heading {
-    max-inline-size: 23.44rem;
+    max-inline-size: 25.25rem;
     margin-inline: auto;
     margin-block: 0;
     padding-inline: 1.5rem;
@@ -138,7 +138,7 @@ body {
   background-color: #fff; }
 
 .c-social-links {
-  max-inline-size: 23.44rem;
+  max-inline-size: 25.25rem;
   padding-inline: 1.5rem;
   padding-block: 1rem;
   background-color: #fff; }
@@ -159,7 +159,7 @@ body {
     font-weight: bold;
     text-decoration: none; }
 
-@media (min-width: 31rem) {
+@media (min-width: 25.25rem) {
   .c-container {
     max-inline-size: 50.63rem; }
   .c-page-header__heading {
@@ -176,7 +176,7 @@ body {
     max-inline-size: 76rem; } }
 
 .t-container {
-  max-inline-size: 23.44rem;
+  max-inline-size: 25.25rem;
   margin-inline: auto;
   margin-block: 0; }
 
@@ -247,7 +247,7 @@ body {
     padding: 0.5rem 1rem;
     text-decoration: none; }
 
-@media (min-width: 31rem) {
+@media (min-width: 25.25rem) {
   .t-container {
     max-inline-size: 50.63rem; }
   .c-nav__site-nav {
@@ -269,7 +269,7 @@ body {
 
 .main-container {
   display: grid;
-  max-inline-size: 23.44rem;
+  max-inline-size: 25.25rem;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, auto);
   grid-template-areas: "header header" "navbar navbar" "main main" "sidebar-top sidebar-top" "sidebar-bottom sidebar-bottom";
@@ -355,11 +355,11 @@ body {
     display: block;
     background-color: #0072b0;
     color: white;
-    padding-inline: 8.25rem;
+    padding-inline: 8.55rem;
     padding-block: 0.5rem;
     text-decoration: none; }
 
-@media (min-width: 31rem) {
+@media (min-width: 25.25rem) {
   .main-container {
     display: grid;
     max-inline-size: 50.63rem;
@@ -444,7 +444,7 @@ body {
       display: block;
       background-color: #0072b0;
       color: white;
-      padding-inline: 8.25rem;
+      padding-inline: 4.85rem;
       padding-block: 0.5rem;
       text-decoration: none; } }
 
@@ -533,6 +533,6 @@ body {
       display: block;
       background-color: #0072b0;
       color: white;
-      padding-inline: 8.25rem;
+      padding-inline: 8.65rem;
       padding-block: 0.5rem;
       text-decoration: none; } }

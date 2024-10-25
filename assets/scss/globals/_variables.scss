@@ -18,7 +18,7 @@ $body-primary-color: $darkest;
 $body-secondary-color: $dark;
 
 // breakpoint 375px to 810px max md devices 
-$breakpoint-md: 31rem;
+$breakpoint-md: 25.25rem;
 // breakpoint 810px to 1200px max lg devices 
 $breakpoint-lg: 50.63rem;
 
@@ -43,6 +43,6 @@ $secondary-font-size: 0.899rem;
 
 $spacing: 1rem;
 $percentage: 1%;
-$column-width-sm: 23.44rem; // 375px
+$column-width-sm: 25.25rem; // 500px
 $column-width-md: 50.63rem; // 810px
 $column-width-lg: 76rem; // 1216px
