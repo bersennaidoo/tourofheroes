@@ -159,7 +159,7 @@ body {
     font-weight: bold;
     text-decoration: none; }
 
-@media (min-width: 23.44rem) {
+@media (min-width: 31rem) {
   .c-container {
     max-inline-size: 50.63rem; }
   .c-page-header__heading {
@@ -247,7 +247,7 @@ body {
     padding: 0.5rem 1rem;
     text-decoration: none; }
 
-@media (min-width: 23.44rem) {
+@media (min-width: 31rem) {
   .t-container {
     max-inline-size: 50.63rem; }
   .c-nav__site-nav {
@@ -359,7 +359,7 @@ body {
     padding-block: 0.5rem;
     text-decoration: none; }
 
-@media (min-width: 23.44rem) {
+@media (min-width: 31rem) {
   .main-container {
     display: grid;
     max-inline-size: 50.63rem;
