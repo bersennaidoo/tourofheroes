@@ -16,6 +16,12 @@
 
 .c-headerp {
     grid-column: header;
+    &__heading {
+        font-weight: $font-weight;
+        font-size: $h1-font-size;
+        text-align: center;
+        padding-block-start: $spacing * 2;
+    }
 }
 
 .c-navp {

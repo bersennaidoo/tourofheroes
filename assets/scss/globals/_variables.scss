@@ -1,11 +1,11 @@
 // color palette
 $primary: #0072b0; // main brand color a buttons ctas
 $primary-2: #709b90;
-$darkest: #006004; // primary text h1 body copy
+$darkest: darken(#0072b0, 90%); // primary text h1 body copy
 $dark: #006004;    // secondary text
 $medium: #006004;  //
 $light: #006004;   // background body
-$lightest: #006004;
+$lightest: lighten(#0072b0, 62.9%);
 $white: #006004;
 
 $error: #006004;
@@ -13,11 +13,11 @@ $warning: #006004;
 $success: #006004;
 $info: #006004;
 
-$body-bg: #eee;
+$body-bg: $lightest;
 $body-primary-color: $darkest;
 $body-secondary-color: $dark;
 
-// breakpoint 375px to 810px max md devices 
+// breakpoint 404px to 810px max md devices 
 $breakpoint-md: 25.25rem;
 // breakpoint 810px to 1200px max lg devices 
 $breakpoint-lg: 50.63rem;
@@ -43,6 +43,6 @@ $secondary-font-size: 0.899rem;
 
 $spacing: 1rem;
 $percentage: 1%;
-$column-width-sm: 25.25rem; // 500px
+$column-width-sm: 25.25rem; // 404px
 $column-width-md: 50.63rem; // 810px
 $column-width-lg: 76rem; // 1216px

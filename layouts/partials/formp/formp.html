@@ -1,0 +1,56 @@
+<form class="c-formp">
+    <h1 class="c-formp__intro-heading">Buy Tickets to the Heroes Concert</h1>
+    <p class="c-formp__intro-text">
+        Tickets are R10 each. Dinner packages are an extra R5. All fields are required
+    </p>
+    <fieldset class="c-formp__fieldset1">
+        <legend class="c-formp__legend">Tickets and Add-ons</legend>
+        <p class="c-formp__data">
+            <label class="c-formp__quantity" for="quantity">Number of Tickets</label>
+            <span class="c-formp__help">Limit 8</span>
+            <input id="quantity" class="c-formp__input-number" max="8" min="1" name="quantity" step="1" type="number" value="1" />
+        </p>
+        <p class="c-formp__data1">
+            <label class="c-formp__dinners">Dinner Packages</label>
+            <span class="c-formp__help">Serves 2</span>
+            <input id="dinners" class="c-formp__input-number-dinners" max="4" min="0" name="dinners" step="1" type="number" value="0" />
+        </p>
+    </fieldset>
+    <fieldset class="c-formp__fieldset2">
+        <legend class="c-formp__legend">Credit card number</legend>
+            <p class="c-formp__data2">
+                <label class="c-formp__ccn">Credit card number</label>
+                <span class="c-formp__help" id="ccn-note">No spaces or dashes, please</span>
+                <input id="ccn" class="c-formp__input-text-ccn" maxlength="16" name="ccn" placeholder="3720000000000008" size="16" type="text" aria-describedby="#ccn-note" />
+            </p>
+            <p class="c-formp__data3">
+                <label class="c-formp__expiration" for="expiration">Expiration date</label>
+                <span class="c-formp__help" id="expiration-note"><abbr class="c-formp__abbr-month" title="Two-digit month">MM</abbr>/<abbr class="c-formp__abbr-year" title="Four-digit Year">YYYY</abbr></span>
+                <input class="c-formp__input-text-expiration" id="expiration" maxlength="7" name="expiration" placeholder="01/2018" size="7" type="text" aria-describedby="#expiration-note">
+              </p>
+    </fieldset>
+    <fieldset class="c-formp__fieldset3">
+        <legend class="c-formp__legend">Billing Address</legend>
+        <p class="c-formp__data4">
+          <label class="c-formp__name" for="name">Name</label>
+          <input class="c-formp__input-text-name" id="name" name="name" placeholder="ex: John Q. Public" size="40" type="text"> 
+        </p>
+        <p class="c-formp__data5">
+          <label class="c-formp__street-address" for="street_address">Street Address</label>
+          <input class="c-formp__input-text-street-address" id="name" name="name" placeholder="ex: 12345 Main Street, Apt 23" size="40" type="text">
+        </p>
+        <p class="c-formp__data6">
+          <label class="c-formp__city" for="city">City</label>
+          <input class="c-formp__input-text-city" id="city" name="city" placeholder="ex: Anytown" type="text">
+        </p>
+        <p class="c-formp__data7">
+          <label class="c-formp__state" for="state">State</label>
+          <input class="c-formp__input-text-state" id="state" maxlength="2" name="state" pattern="[A-W]{2}" placeholder="CA" size="2" type="text">
+        </p>
+        <p class="c-formp__data8">
+          <label class="c-formp__zip" for="zip">ZIP</label>
+          <input class="c-formp__input-text-zip" id="zip" maxlength="5" name="zip" pattern="0-9{5}" placeholder="12345" size="5" type="text">
+        </p>
+      </fieldset>
+      <button class="c-formp__btn-submit" type="submit">Buy Tickets!</button>
+</form>
